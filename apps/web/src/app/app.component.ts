@@ -3,9 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nx-chat-root',
   template: `
-    <h1>Sample Chat Application</h1>
+    <ng-chat-header></ng-chat-header>
+    <ng-chat-contact-list></ng-chat-contact-list>
   `,
 })
-export class AppComponent {
-  title = 'web';
-}
+export class AppComponent {}
