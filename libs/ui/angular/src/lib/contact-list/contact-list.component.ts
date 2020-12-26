@@ -1,30 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ng-chat-contact-list',
   template: `
-    <div class="max-h-screen pb-16 overflow-auto">
-      <div
-        *ngFor="let contact of contacts"
-        class="flex flex-nowrap items-center py-4 border-b border-gray-200 mx-2">
-        <div class="w-1/6">
-          <img [alt]="contact.name" [src]="contact.photoUrl" class="h-12 w-12 rounded-full mx-auto">
-        </div>
-        <div class="flex flex-col w-4/6 text-sm mx-3">
-          <h3 class="text-gray-600 font-extrabold leading-tight">{{contact.name}}</h3>
-          <p class="text-gray-500 whitespace-nowrap overflow-ellipsis overflow-hidden">{{contact.lastMessage}}</p>
-        </div>
-        <div class="flex flex-col w-1/6 flex-shrink text-center text-xs text-gray-500">
-          <div>{{contact.lastActive}}</div>
-          <div class="flex justify-center mt-1">
-            <span class="bg-green-400 text-white leading-6 px-2 rounded-full">
-              {{contact.newMessageCount}}
-            </span>
-          </div>
+    <div
+      *ngFor="let contact of contacts"
+      class="flex flex-nowrap items-center justify-center py-3 border-b border-gray-100 mx-2">
+      <div class="flex-none">
+        <img [alt]="contact.name" [src]="contact.photoUrl" class="h-12 w-12 rounded-full mx-auto">
+      </div>
+      <div class="w-3/5 flex flex-col flex-nowrap text-sm mx-3">
+        <h3 class="text-gray-600 font-extrabold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{contact.name}}</h3>
+        <p class="text-gray-500 whitespace-nowrap overflow-ellipsis overflow-hidden">{{contact.lastMessage}}</p>
+      </div>
+      <div class="flex-none flex flex-col text-center text-xs text-gray-500">
+        <div>{{contact.lastActive}}</div>
+        <div class="flex justify-center mt-1">
+          <span class="bg-green-400 text-white leading-6 px-2 rounded-full">
+            {{contact.newMessageCount}}
+          </span>
         </div>
       </div>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class ContactListComponent {
   contacts = [
