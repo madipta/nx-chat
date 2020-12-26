@@ -5,11 +5,14 @@
       "projectType": "application",
       "root": "apps/web",
       "sourceRoot": "apps/web/src",
-      "prefix": "nx-test",
+      "prefix": "nx-chat",
       "targets": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            },
             "outputPath": "dist/apps/web",
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
@@ -56,8 +59,11 @@
           }
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-builders/custom-webpack:dev-server",
           "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            },
             "browserTarget": "web:build"
           },
           "configurations": {
@@ -193,7 +199,7 @@
       "projectType": "library",
       "root": "libs/components",
       "sourceRoot": "libs/components/src",
-      "prefix": "nx-test",
+      "prefix": "nx-chat",
       "targets": {
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",

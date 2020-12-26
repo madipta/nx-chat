@@ -1,5 +1,5 @@
 {
-  "npmScope": "nx-test",
+  "npmScope": "nx-chat",
   "affected": {
     "defaultBase": "master"
   },
