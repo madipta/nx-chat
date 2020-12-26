@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nx-test-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'nx-chat-root',
+  template: `
+    <h1>Sample Chat Application</h1>
+  `,
 })
 export class AppComponent {
   title = 'web';
