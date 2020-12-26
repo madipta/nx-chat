@@ -195,32 +195,32 @@
         }
       }
     },
-    "components": {
+    "ui-angular": {
       "projectType": "library",
-      "root": "libs/components",
-      "sourceRoot": "libs/components/src",
+      "root": "libs/ui/angular",
+      "sourceRoot": "libs/ui/angular/src",
       "prefix": "nx-chat",
       "targets": {
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/components/tsconfig.lib.json",
-              "libs/components/tsconfig.spec.json"
+              "libs/ui/angular/tsconfig.lib.json",
+              "libs/ui/angular/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/components/**/*"
+              "!libs/ui/angular/**/*"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/components"
+            "coverage/libs/ui/angular"
           ],
           "options": {
-            "jestConfig": "libs/components/jest.config.js",
+            "jestConfig": "libs/ui/angular/jest.config.js",
             "passWithNoTests": true
           }
         }
