@@ -1,11 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'ng-chat-contact-list',
+  selector: 'ng-chat-list',
   template: `
     <div
-      *ngFor="let contact of contacts"
-      class="flex flex-nowrap items-center justify-center py-3 border-b border-gray-100 mx-2">
+      *ngFor="let contact of contacts;odd as isOdd"
+      (click)="select(contact)"
+      [ngClass]="{ 'bg-gray-100': isOdd }"
+      class="transition hover:bg-gray-200 cursor-pointer flex flex-nowrap items-center justify-center py-3 border-l-2 border-r-2 border-transparent">
       <div class="flex-none">
         <img [alt]="contact.name" [src]="contact.photoUrl" class="h-12 w-12 rounded-full mx-auto">
       </div>
@@ -25,7 +27,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   `,
   encapsulation: ViewEncapsulation.None
 })
-export class ContactListComponent {
+export class ChatListComponent {
   contacts = [
     {
       name: 'Vincent Mangano',
@@ -85,4 +87,8 @@ export class ContactListComponent {
       lastMessage: 'Keep your friends close and your enemy closer..',
     },
   ];
+
+  select(contact) {
+    alert(contact);
+  }
 }
