@@ -1,20 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ng-chat-statuses',
   template: `
-    <p>
-      statuses works!
-    </p>
+    <div>My Status</div>
+    <div>Recent updates</div>
+    <div>Viewed updates</div>
+    <div>Muted updates</div>
   `,
-  styles: [
-  ]
-})
-export class StatusesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  host: {
+    class: 'flex flex-col max-w-screen-md mx-auto'
   }
-
-}
+})
+export class StatusesComponent {}

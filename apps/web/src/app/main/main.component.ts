@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   template: `
-    <div class="relative bg-white flex flex-col max-w-screen-xl h-screen mx-auto">
-      <ng-chat-header (select)="select($event)"></ng-chat-header>
+    <app-main-header (select)="select($event)"></app-main-header>
+    <div class="overflow-y-auto">
       <router-outlet></router-outlet>
     </div>
-  `
+  `,
+  host: {
+    class: 'relative flex flex-col h-screen',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
-  selected = ''
+  selected = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   select(menu) {
     this.selected = menu;
-    this.router.navigate(['/' + menu])
+    this.router.navigate(['/' + menu]);
   }
 }

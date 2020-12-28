@@ -12,6 +12,7 @@ import { ChatListComponent } from './main/chat-list/chat-list.component';
 import { StatusListComponent } from './main/status-list/status-list.component';
 import { CallListComponent } from './main/call-list/call-list.component';
 import { PhotoComponent } from './main/photo/photo.component';
+import { HeaderComponent } from './main/header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PhotoComponent } from './main/photo/photo.component';
     StatusListComponent,
     CallListComponent,
     PhotoComponent,
+    HeaderComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes), UiAngularModule],
   providers: [],
