@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Output,
-  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -46,20 +45,19 @@ import {
           <div
             (click)="menuClick('')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == ''}"
-            class="cursor-pointer mx-2 flex-grow">Chats</div>
+            class="cursor-pointer font-semibold mx-2 flex-grow">Chats</div>
           <div 
             (click)="menuClick('status')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == 'status'}"
-            class="cursor-pointer mx-2 flex-grow">Status</div>
+            class="cursor-pointer font-semibold mx-2 flex-grow">Status</div>
           <div
             (click)="menuClick('calls')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == 'calls'}"
-            class="cursor-pointer ml-2 flex-grow">Calls</div>
+            class="cursor-pointer font-semibold ml-2 flex-grow">Calls</div>
         </div>
       </div>
     </ng-chat-header>
   `,
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {

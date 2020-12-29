@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
           class="h-12 w-12 rounded-full mx-auto">
       </div>
       <div class="w-3/5 flex flex-col flex-nowrap text-sm mx-3">
-        <h3 class="text-gray-600 font-extrabold leading-none whitespace-nowrap overflow-ellipsis overflow-hidden">{{chat.name}}</h3>
+        <h3 class="text-gray-600 font-extrabold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{chat.name}}</h3>
         <p class="text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{chat.lastMessage}}</p>
       </div>
       <div class="flex-none flex flex-col text-center text-xs text-gray-500">

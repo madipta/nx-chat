@@ -6,6 +6,7 @@ import { ChatComponent } from './chat/chat.component';
 import { MainComponent } from './main/main.component';
 import { PhotoComponent } from './main/photo/photo.component';
 import { StatusListComponent } from './main/status-list/status-list.component';
+import { ChatViewComponent } from './chat/chat-view/chat-view.component';
 
 export const appRoutes: Routes = [
   {
@@ -18,7 +19,11 @@ export const appRoutes: Routes = [
       { path: 'photo', component: PhotoComponent },
     ],
   },
-  { path: 'chat', component: ChatComponent },
+  {
+    path: 'chat',
+    component: ChatComponent,
+    children: [{ path: '', component: ChatViewComponent }],
+  },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

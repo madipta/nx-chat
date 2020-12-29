@@ -13,6 +13,8 @@ import { StatusListComponent } from './main/status-list/status-list.component';
 import { CallListComponent } from './main/call-list/call-list.component';
 import { PhotoComponent } from './main/photo/photo.component';
 import { HeaderComponent } from './main/header/header.component';
+import { ChatHeaderComponent } from './chat/chat-header/chat-header.component';
+import { ChatViewComponent } from './chat/chat-view/chat-view.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,14 @@ import { HeaderComponent } from './main/header/header.component';
     LoginComponent,
     MainComponent,
     ChatComponent,
+    ChatHeaderComponent,
     ChatListComponent,
     StatusListComponent,
     CallListComponent,
     PhotoComponent,
     HeaderComponent,
+    ChatListComponent,
+    ChatViewComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes), UiAngularModule],
   providers: [],
