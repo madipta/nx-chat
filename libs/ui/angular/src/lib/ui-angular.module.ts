@@ -6,6 +6,8 @@ import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
 import { StatusesComponent } from './statuses/statuses.component';
 import { CallsComponent } from './calls/calls.component';
+import { StatusComponent } from './statuses/status.component';
+import { StatusGroupComponent } from './statuses/status-group.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -16,6 +18,8 @@ import { CallsComponent } from './calls/calls.component';
     LoginComponent,
     StatusesComponent,
     CallsComponent,
+    StatusComponent,
+    StatusGroupComponent,
   ],
   exports: [
     HeaderComponent,

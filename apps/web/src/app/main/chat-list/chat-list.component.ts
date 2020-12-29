@@ -1,14 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat-list',
   template: `
     <div class="pb-12">
-      <ng-chat-list [list]="chatList" class="flex flex-col pb-20 overflow-y-auto"></ng-chat-list>
+      <ng-chat-list [list]="chatList" class="flex flex-col pb-12 overflow-y-auto"></ng-chat-list>
     </div>
     <div 
       (click)="newMessage()"
@@ -22,7 +18,6 @@ import {
       </svg>
     </div>
   `,
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatListComponent {
