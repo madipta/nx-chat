@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     </div>
   `,
   host: {
-    class: 'relative flex flex-col h-screen bg-gray-100',
+    class: 'relative flex flex-col h-screen bg-gray-200',
   },
 })
 export class ChatComponent {}
