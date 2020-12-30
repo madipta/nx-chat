@@ -1,31 +1,36 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-header',
   template: `
     <ng-chat-header>
-      <div class="flex items-center w-full py-2">
-        <div class="flex-none flex-nowrap">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="cursor-pointer inline w-5 h-5 mt-1"
-            viewBox="0 0 24 24">
-            <path d="M12.5 11h-.79l-.28-.27A6.47 6.47 0 0 0 13 6.5a6.5 6.5 0 1 0-13 0A6.5 6.5 0 0 0 6.5 13a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L17.49 16l-4.99-5zm-6 0C4.01 11 2 8.99 2 6.5S4.01 2 6.5 2 11 4.01 11 6.5 8.99 11 6.5 11z" />
-          </svg>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            class="cursor-pointer inline w-5 h-5 mt-1"
-            viewBox="0 0 24 24">
-            <path d="M12.5 11h-.79l-.28-.27A6.47 6.47 0 0 0 13 6.5a6.5 6.5 0 1 0-13 0A6.5 6.5 0 0 0 6.5 13a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L17.49 16l-4.99-5zm-6 0C4.01 11 2 8.99 2 6.5S4.01 2 6.5 2 11 4.01 11 6.5 8.99 11 6.5 11z" />
-          </svg>
-        </div>
+      <div class="flex items-center w-full py-3">
+        <svg 
+          (click)="back()"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          class="cursor-pointer w-5 h-5 mt-1"
+          viewBox="0 0 24 24">
+          <path d="M15 7H3.83l4.88-4.88a1.01 1.01 0 0 0 0-1.42C8.32.31 7.69.31 7.3.7L.71 7.29c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L3.83 9H15c.55 0 1-.45 1-1s-.45-1-1-1z" />
+        </svg>
+        <img
+          [alt]="name"
+          [src]="photoUrl"
+          loading="lazy"
+          class="h-10 w-10 rounded-full mx-auto">
         <div class="flex flex-col flex-grow mx-3">
-          <h2 class="leading-none text-lg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{title}}</h2>
-          <p class="leading-none text-sm text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
+          <h2 class="leading-tight text-lg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{title}}</h2>
+          <p class="leading-tight text-sm text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
         </div>
         <div class="flex-none flex-nowrap">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="cursor-pointer inline w-5 h-5 mr-6"
+            viewBox="0 0 25 25">
+            <path d="M20 19.75A1.25 1.25 0 0 1 18.75 21H1.25A1.25 1.25 0 0 1 0 19.75V5.25A1.25 1.25 0 0 1 1.25 4h17.5A1.25 1.25 0 0 1 20 5.25zm4.76-12.68a.5.5 0 0 0-.49 0L21 8.74v7.51l3.27 1.69a.5.5 0 0 0 .73-.44v-10a.5.5 0 0 0-.24-.43z" />
+          </svg>
           <svg 
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -46,6 +51,14 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class ChatHeaderComponent {
+  @Input() name = 'xxx';
   @Input() title = 'xxx';
-  @Input() description = 'zzzzzzz';
+  @Input() photoUrl = 'https://randomuser.me/api/portraits/men/79.jpg';
+  @Input() description = 'online';
+
+  constructor(private router: Router) {}
+
+  back() {
+    this.router.navigate(['']);
+  }
 }
