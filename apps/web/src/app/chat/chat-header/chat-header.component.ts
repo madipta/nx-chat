@@ -18,7 +18,9 @@ import { Router } from '@angular/router';
           [alt]="name"
           [src]="photoUrl"
           loading="lazy"
-          class="h-10 w-10 rounded-full mx-auto">
+          width="42"
+          height="42"
+          class="rounded-full mx-auto">
         <div class="flex flex-col flex-grow mx-3">
           <h2 class="leading-tight text-lg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{title}}</h2>
           <p class="leading-tight text-sm text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
