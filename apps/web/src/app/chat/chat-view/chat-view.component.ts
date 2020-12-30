@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat-view',
   template: `
     <div class="max-w-screen-sm pb-12 mx-auto">
-      <ng-chat-detail></ng-chat-detail>
+      <ng-chat-detail [messages]="messages"></ng-chat-detail>
     </div>
     <div class="absolute bg-gray-100 bottom-0 left-0 right-0">
       <div class="flex w-full max-w-screen-sm px-3 py-2 mx-auto">
@@ -33,11 +33,79 @@ import { Component, OnInit } from '@angular/core';
     </div>
   `,
 })
-export class ChatViewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class ChatViewComponent {
+  messages = [
+    {
+      body: 'some looooooooooooooooooooooooooooooooooooooong message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'hmm',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      reply: true,
+      body: 'some reply ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'some message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'some sample message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      reply: true,
+      body: 'some reply message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      reply: true,
+      body: 'some message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'lorem ipsum apalah apa kek iyalah iya dong ada deh ada aja...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: `
+        bla bla...bla bla...bla bla...bla bla...bla bla...bla 
+        bla...bla bla...bla bla...bla bla...bla bla...bla bla...
+        bla bla...bla bla...bla bla...bla bla...bla bla...
+        bla bla...bla bla...bla bla...bla bla...bla bla...`,
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'some message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      body: 'some message ...',
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+    {
+      reply: true,
+      body: `
+        bla bla...bla bla...bla bla...bla bla...bla bla...bla 
+        bla...bla bla...bla bla...bla bla...bla bla...bla bla...
+        bla bla...bla bla...bla bla...bla bla...bla bla...
+        bla bla...bla bla...bla bla...bla bla...bla bla...`,
+      date: 'yesterday',
+      at: '1:49 PM',
+    },
+  ];
 }
