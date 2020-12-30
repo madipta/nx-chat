@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     <ng-chat-statuses [me]="me" [recent]="recent" [viewed]="viewed" [muted]="muted"></ng-chat-statuses>
     <div 
       (click)="shot()"
-      class="absolute bottom-0 right-0 cursor-pointer p-3 mr-10 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
+      class="absolute bottom-0 right-0 cursor-pointer p-3 mr-5 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

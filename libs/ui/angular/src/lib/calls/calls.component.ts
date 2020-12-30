@@ -14,8 +14,8 @@ import { Call } from './call';
           loading="lazy"
           class="h-12 w-12 rounded-full mx-auto">
       </div>
-      <div class="flex-grow flex flex-col text-sm mx-3">
-        <div class="text-gray-800 font-semibold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{call.name}}</div>
+      <div class="flex-grow flex flex-col mx-3">
+        <div class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{call.name}}</div>
         <div class="text-xs text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{call.date}}</div>
       </div>
       <div class="flex-none text-green-600 mr-2">
@@ -39,7 +39,7 @@ import { Call } from './call';
     </div>
   `,
   host: {
-    class: 'flex flex-col w-full max-w-md mx-auto',
+    class: 'flex flex-col w-full max-w-md pt-1 mx-auto',
   },
 })
 export class CallsComponent {

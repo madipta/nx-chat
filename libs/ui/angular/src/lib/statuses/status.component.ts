@@ -12,7 +12,7 @@ import { Status } from './status';
         class="h-12 w-12 rounded-full mx-auto">
     </div>
     <div class="flex flex-col flex-nowrap mx-3">
-      <h3 class="text-sm text-gray-700 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{user.name}}</h3>
+      <h3 class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{user.name}}</h3>
       <p class="text-xs text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{user.lastDate}}</p>
     </div>
   `,
