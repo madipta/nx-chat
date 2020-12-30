@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'ng-chat-detail',
   template: `
-    <div class="px-2">
+    <div class="px-2 pt-2">
       <div
         *ngFor="let msg of messages;"
         [ngClass]="{ 'bg-green-100 float-right border-green-100': msg.reply, 'float-left': !msg.reply }"

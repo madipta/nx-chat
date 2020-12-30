@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
     </div>
     <div class="absolute bg-gray-100 bottom-0 left-0 right-0">
       <div class="flex w-full max-w-screen-sm px-3 py-2 mx-auto">
-        <div class="flex-grow flex items-center bg-white px-3 py-2 rounded-full shadow-lg mr-3">
+        <div class="flex-grow flex items-center bg-white px-3 py-2 rounded-3xl shadow-lg mr-3">
           <svg 
             xmlns="http://www.w3.org/2000/svg"
             fill="none" stroke="#aaa" stroke-width="2"
@@ -20,12 +20,12 @@ import { Component, OnInit } from '@angular/core';
             contenteditable="true"
             class="w-full text-gray-500 focus:border-0 focus:outline-none mx-3">Type a Message</div>
         </div>
-        <div class="flex-none flex items-center justify-center bg-green-700 w-10 rounded-full shadow-lg">
+        <div class="flex-none flex items-center justify-center">
           <svg 
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
-            class="text-white w-5 h-5"
-            viewBox="0 0 16 16">
+            class="bg-green-700 text-white w-10 h-10 rounded-full shadow-lg"
+            viewBox="-4 -3 24 24">
             <path d="M8 11a3 3 0 0 0 3-3V3a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3V6h-1v1.844c0 1.92-1.282 3.688-3.164 4.071A4.01 4.01 0 0 1 4 8V6H3v2a5.01 5.01 0 0 0 4 4.899V15H5v1h6v-1H9v-2.101A5.01 5.01 0 0 0 13 8z"/>
           </svg>
         </div>
