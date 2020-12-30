@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-status-list',
   template: `
-    <ng-chat-statuses></ng-chat-statuses>
+    <ng-chat-statuses [me]="me" [recent]="recent" [viewed]="viewed" [muted]="muted"></ng-chat-statuses>
     <div 
       (click)="shot()"
       class="absolute bottom-0 right-0 cursor-pointer p-3 mr-10 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
@@ -21,5 +21,40 @@ import { Component } from '@angular/core';
   }
 })
 export class StatusListComponent {
+  me = {
+    name: 'Vincent Mangano',
+    photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
+    lastDate: 'yesterday',
+  };
+
+  recent = [
+    {
+      name: 'Vincent Mangano',
+      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
+      lastDate: 'yesterday',
+    },
+  ];
+
+   viewed = [
+    {
+      name: 'Vincent Mangano',
+      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
+      lastDate: 'yesterday',
+    },
+    {
+      name: 'Vincent Mangano',
+      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
+      lastDate: 'yesterday',
+    },
+  ];
+
+  muted = [
+    {
+      name: 'Vincent Mangano',
+      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
+      lastDate: 'yesterday',
+    },
+  ];
+  
   shot() {}
 }

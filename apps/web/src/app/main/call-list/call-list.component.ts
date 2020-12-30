@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-call-list',
   template: `
-    <p>
-      call-list works!
-    </p>
+    <ng-chat-calls></ng-chat-calls>
   `,
+  host: {
+    class: 'flex flex-col px-2'
+  }
 })
 export class CallListComponent {}

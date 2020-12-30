@@ -14,38 +14,8 @@ import { Status } from './status';
   },
 })
 export class StatusesComponent {
-  @Input() me: Status = {
-    name: 'Vincent Mangano',
-    photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-    lastDate: 'yesterday',
-  };
-
-  @Input() recent: Status[] = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
-
-  @Input() viewed: Status[] = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
-
-  @Input() muted: Status[] = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
+  @Input() me: Status;
+  @Input() recent: Status[];
+  @Input() viewed: Status[];
+  @Input() muted: Status[];
 }
