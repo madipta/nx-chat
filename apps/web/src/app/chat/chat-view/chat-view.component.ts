@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
     <div class="max-w-screen-sm pb-12 mx-auto">
       <ng-chat-detail></ng-chat-detail>
     </div>
-    <div class="absolute bg-gray-100 bottom-0 left-0 right-0 mr-4">
-      <div class="flex w-full max-w-screen-sm px-3 pt-2 pb-1 mx-auto">
+    <div class="absolute bg-gray-100 bottom-0 left-0 right-0">
+      <div class="flex w-full max-w-screen-sm px-3 py-2 mx-auto">
         <div class="flex-grow flex items-center bg-white px-3 py-2 rounded-full shadow-lg mr-3">
           <svg 
             xmlns="http://www.w3.org/2000/svg"
