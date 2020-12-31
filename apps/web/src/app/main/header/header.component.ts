@@ -14,6 +14,7 @@ import {
         <ul class="text-sm font-medium text-gray-300">
           <li class="inline-block pr-2 border-r border-green-700 mr-2">
             <svg 
+              (tap)="notImplemented()"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               class="cursor-pointer inline w-5 h-5 mt-1"
@@ -23,6 +24,7 @@ import {
           </li>
           <li class="inline-block">
             <svg 
+              (tap)="notImplemented()"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
               class="cursor-pointer inline w-5 h-5"
@@ -34,7 +36,7 @@ import {
       </div>
       <div class="flex flex-row text-sm font-medium text-green-600">
         <svg
-          (click)="menuClick('photo')"
+          (tap)="menuClick('photo')"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           class="cursor-pointer inline w-4 h-4"
@@ -43,15 +45,15 @@ import {
         </svg>
         <div class="flex flex-row w-full text-center">
           <div
-            (click)="menuClick('')"
+            (tap)="menuClick('')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == ''}"
             class="cursor-pointer font-semibold mx-2 flex-grow">Chats</div>
           <div 
-            (click)="menuClick('status')"
+            (tap)="menuClick('status')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == 'status'}"
             class="cursor-pointer font-semibold mx-2 flex-grow">Status</div>
           <div
-            (click)="menuClick('calls')"
+            (tap)="menuClick('calls')"
             [ngClass]="{ 'text-gray-100 border-b-2 border-gray-100': selected == 'calls'}"
             class="cursor-pointer font-semibold ml-2 flex-grow">Calls</div>
         </div>
@@ -70,5 +72,9 @@ export class HeaderComponent {
       menu = '';
     }
     this.selected = menu;
+  }
+
+  notImplemented() {
+    alert('Not Implemented.');
   }
 }

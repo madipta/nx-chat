@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   template: `
     <div
       *ngFor="let chat of list;odd as isOdd"
-      (click)="select(chat)"
+      (tap)="select(chat)"
       class="cursor-pointer flex flex-nowrap items-center justify-center py-3 border-b border-gray-100">
       <div class="flex-none">
         <img
