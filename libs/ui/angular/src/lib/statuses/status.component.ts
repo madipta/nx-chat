@@ -9,7 +9,9 @@ import { Status } from './status';
         [alt]="user.name"
         [src]="user.photoUrl"
         loading="lazy"
-        class="h-12 w-12 rounded-full mx-auto">
+        width="48"
+        height="48"
+        class="rounded-full mx-auto">
     </div>
     <div class="flex flex-col flex-nowrap mx-3">
       <h3 class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{user.name}}</h3>

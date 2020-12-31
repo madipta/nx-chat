@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,17 +25,15 @@ import { Router } from '@angular/router';
       <p class="text-sm text-center mb-1">Hold for video, tap for photo</p>
     </div>
   `,
-  host: {
-    class: 'fixed top-0 bottom-0 left-0 right-0 bg-black',
-    '(tap)': 'close()'
-  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoComponent {
-  constructor(private router: Router) {}
-
-  close() {
+  @HostBinding('className') rootClass = 'fixed top-0 bottom-0 left-0 right-0 bg-black';
+  
+  @HostListener('tap') close() {
     alert('Not Implemented.');
     this.router.navigate(['/']);
   }
+
+  constructor(private router: Router) {}
 }

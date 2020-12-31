@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -8,8 +8,7 @@ import { Component } from '@angular/core';
       <router-outlet></router-outlet>
     </div>
   `,
-  host: {
-    class: 'relative flex flex-col h-screen bg-gray-200',
-  },
 })
-export class ChatComponent {}
+export class ChatComponent {
+  @HostBinding('className') rootClass = 'relative flex flex-col h-screen bg-gray-200';
+}

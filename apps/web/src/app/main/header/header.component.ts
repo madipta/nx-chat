@@ -63,11 +63,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Output() select = new EventEmitter<string>();
+  @Output() MainMenuSelected = new EventEmitter<string>();
   selected = '';
 
   menuClick(menu) {
-    this.select.emit(menu);
+    this.MainMenuSelected.emit(menu);
     if (menu === 'photo') {
       menu = '';
     }

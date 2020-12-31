@@ -12,7 +12,9 @@ import { Call } from './call';
           [alt]="call.name"
           [src]="call.photoUrl"
           loading="lazy"
-          class="h-12 w-12 rounded-full mx-auto">
+          width="48"
+          height="48"
+          class="rounded-full mx-auto">
       </div>
       <div class="flex-grow flex flex-col mx-3">
         <div class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{call.name}}</div>

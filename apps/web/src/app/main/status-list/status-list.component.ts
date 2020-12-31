@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'app-status-list',
@@ -16,11 +16,10 @@ import { Component, Input } from '@angular/core';
       </svg>
     </div>
   `,
-  host: {
-    class: 'flex flex-col pb-20'
-  }
 })
 export class StatusListComponent {
+  @HostBinding('className') rootClass = 'flex flex-col pb-20';
+
   me = {
     name: 'Vincent Mangano',
     photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',

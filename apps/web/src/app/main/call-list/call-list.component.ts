@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-call-list',
@@ -16,11 +16,10 @@ import { Component } from '@angular/core';
       </svg>
     </div>
   `,
-  host: {
-    class: 'flex flex-col px-2'
-  }
 })
 export class CallListComponent {
+  @HostBinding('className') rootClass = 'flex flex-col px-2';
+  
   notImplemented() {
     alert('Not Implemented.');
   }
