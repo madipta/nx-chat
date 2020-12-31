@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
           [alt]="chat.name"
           [src]="chat.photoUrl"
           loading="lazy"
-          class="h-12 w-12 rounded-full mx-auto">
+          width="48"
+          height="48"
+          class="rounded-full mx-auto">
       </div>
-      <div class="w-3/5 flex flex-col flex-nowrap mx-3">
+      <div class="w-7/12 flex flex-col mx-3">
         <h3 class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{chat.name}}</h3>
         <p class="text-xs text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{chat.lastMessage}}</p>
       </div>

@@ -5,7 +5,7 @@
       "projectType": "application",
       "root": "apps/web",
       "sourceRoot": "apps/web/src",
-      "prefix": "nx-chat",
+      "prefix": "app-chat",
       "targets": {
         "build": {
           "executor": "@angular-builders/custom-webpack:browser",
@@ -199,7 +199,7 @@
       "projectType": "library",
       "root": "libs/ui/angular",
       "sourceRoot": "libs/ui/angular/src",
-      "prefix": "nx-chat",
+      "prefix": "ng-chat",
       "targets": {
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",

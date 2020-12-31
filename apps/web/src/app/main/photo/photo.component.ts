@@ -35,6 +35,7 @@ export class PhotoComponent {
   constructor(private router: Router) {}
 
   close() {
+    alert('Not Implemented.');
     this.router.navigate(['/']);
   }
 }
