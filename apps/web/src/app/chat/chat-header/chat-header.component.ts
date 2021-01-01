@@ -6,14 +6,15 @@ import { Router } from '@angular/router';
   template: `
     <ng-chat-header>
       <div class="flex items-center w-full py-3">
-        <svg 
-          (tap)="back()"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          class="cursor-pointer w-5 h-5 mt-1"
-          viewBox="0 0 24 24">
-          <path d="M15 7H3.83l4.88-4.88a1.01 1.01 0 0 0 0-1.42C8.32.31 7.69.31 7.3.7L.71 7.29c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L3.83 9H15c.55 0 1-.45 1-1s-.45-1-1-1z" />
-        </svg>
+        <a routerLink="/">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="cursor-pointer w-5 h-5 mt-1"
+            viewBox="0 0 24 24">
+            <path d="M15 7H3.83l4.88-4.88a1.01 1.01 0 0 0 0-1.42C8.32.31 7.69.31 7.3.7L.71 7.29c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L3.83 9H15c.55 0 1-.45 1-1s-.45-1-1-1z" />
+          </svg>
+        </a>
         <img
           [alt]="name"
           [src]="photoUrl"
@@ -62,10 +63,6 @@ export class ChatHeaderComponent {
   @Input() description = 'online';
 
   constructor(private router: Router) {}
-
-  back() {
-    this.router.navigate(['']);
-  }
 
   notImplemented() {
     alert('Not Implemented.');

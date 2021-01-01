@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-list',
   template: `
     <div class="pb-12">
-      <ng-chat-list [list]="chatList" class="flex flex-col pb-12 overflow-y-auto"></ng-chat-list>
+      <ng-chat-list [list]="chatList" (ChatSelected)="onChatSelected($event)"></ng-chat-list>
     </div>
     <div 
       (tap)="notImplemented()"
@@ -20,66 +22,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatListComponent {
-  chatList = [
-    {
-      name: 'Vincent Mangano',
-      lastActive: 'yesterday',
-      newMessageCount: 5,
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastMessage: 'Money talks. The more money, the louder it talks.',
-    },
-    {
-      name: 'Carlo Gambino',
-      lastActive: 'yesterday',
-      newMessageCount: 25,
-      photoUrl: 'https://randomuser.me/api/portraits/men/66.jpg',
-      lastMessage: 'Everybody you fight is not your enemy and everybody that helps you is not your friend.',
-    },
-    {
-      name: 'Salvatore Gravano',
-      lastActive: 'yesterday',
-      newMessageCount: 123,
-      photoUrl: 'https://randomuser.me/api/portraits/men/79.jpg',
-      lastMessage: 'Don\'t ever take sides with anyone against the family.'
-    },
-    {
-      name: 'Giuseppe Masseria',
-      lastActive: 'yesterday',
-      newMessageCount: 1231,
-      photoUrl: 'https://randomuser.me/api/portraits/men/82.jpg',
-      lastMessage: 'Blood makes you related. Loyalty makes you family.',
-    },
-    {
-      name: 'Anthony Anastasio',
-      lastActive: 'yesterday',
-      newMessageCount: 8,
-      photoUrl: 'https://randomuser.me/api/portraits/men/7.jpg',
-      lastMessage: 'Knowledge will give you power but character will give you respect.',
-    },
-    {
-      name: 'Vincent Gigante',
-      lastActive: 'yesterday',
-      newMessageCount: 65,
-      photoUrl: 'https://randomuser.me/api/portraits/men/40.jpg',
-      lastMessage: 'I don\'t trust words, I even question actions but I never doubt patterns',
-    },
-    {
-      name: 'Alessandro Vollero',
-      lastActive: 'yesterday',
-      newMessageCount: 907,
-      photoUrl: 'https://randomuser.me/api/portraits/men/29.jpg',
-      lastMessage: 'No one gives it to you. You have to take it.',
-    },
-    {
-      name: 'Charlie Luciano',
-      position: 'Lucky',
-      lastActive: 'yesterday',
-      newMessageCount: 4,
-      photoUrl: 'https://randomuser.me/api/portraits/men/71.jpg',
-      lastMessage: 'Keep your friends close and your enemy closer..',
-    },
-  ];
+export class ChatListComponent implements OnInit {
+  chatList = [];
+
+  constructor(private router: Router, private chatService: ChatService) {}
+
+  ngOnInit(): void {
+    this.chatList = this.chatService.GetUserChatList();
+  }
+
+  onChatSelected(chat) {
+    this.router.navigateByUrl(`/chat/${chat.chatId}`);
+  }
 
   notImplemented() {
     alert('Not Implemented.');

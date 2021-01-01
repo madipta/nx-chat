@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-view',
@@ -22,7 +24,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
             (tap)="placeholderClick()"
             class="text-gray-400 w-full mx-3">Type a Message</div>
           <div
-            #message
+            #inputMessage
             (blur)="messageBlur()"
             contenteditable="true"
             class="hidden w-full text-gray-700 max-h-32 focus:outline-none mx-3 overflow-y-auto"></div>
@@ -51,96 +53,32 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
     </div>
   `,
 })
-export class ChatViewComponent implements AfterViewInit  {
+export class ChatViewComponent implements OnInit, AfterViewInit  {
   @ViewChild("placeholder") placeholdeRef: ElementRef;
-  @ViewChild("message") messageRef: ElementRef;
+  @ViewChild("inputMessage") inputMessageRef: ElementRef;
   private placeholder: HTMLElement;
-  private message: HTMLElement;
+  private inputMessage: HTMLElement;
   isEdit = false;
+  messages = [];
+  
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private chatService: ChatService
+  ) {}
 
-  messages = [
-    {
-      body: 'some looooooooooooooooooooooooooooooooooooooong message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'hmm',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      reply: true,
-      body: 'some reply ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'some message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'some sample message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      reply: true,
-      body: 'some reply message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      reply: true,
-      body: 'some message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'lorem ipsum apalah apa kek iyalah iya dong ada deh ada aja...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: `
-        bla bla...bla bla...bla bla...bla bla...bla bla...bla 
-        bla...bla bla...bla bla...bla bla...bla bla...bla bla...
-        bla bla...bla bla...bla bla...bla bla...bla bla...
-        bla bla...bla bla...bla bla...bla bla...bla bla...`,
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'some message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      body: 'some message ...',
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-    {
-      reply: true,
-      body: `
-        bla bla...bla bla...bla bla...bla bla...bla bla...bla 
-        bla...bla bla...bla bla...bla bla...bla bla...bla bla...
-        bla bla...bla bla...bla bla...bla bla...bla bla...
-        bla bla...bla bla...bla bla...bla bla...bla bla...`,
-      date: 'yesterday',
-      at: '1:49 PM',
-    },
-  ];
+  ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.messages = this.chatService.GetChat(id);
+  }
 
   ngAfterViewInit(): void {
     this.placeholder = this.placeholdeRef.nativeElement as HTMLElement;
-    this.message = this.messageRef.nativeElement as HTMLElement;
+    this.inputMessage = this.inputMessageRef.nativeElement as HTMLElement;
   }
 
   private toggleMessageInput() {
     this.placeholder.classList.toggle('hidden');
-    this.message.classList.toggle('hidden');
+    this.inputMessage.classList.toggle('hidden');
   }
 
   notImplemented() {
@@ -148,23 +86,23 @@ export class ChatViewComponent implements AfterViewInit  {
   }
 
   sendMessage() {
-    const text = this.message.innerText.trim();
+    const text = this.inputMessage.innerText.trim();
     if (text) {
       alert(`SEND: ${text}`);
       this.toggleMessageInput();
-      this.message.innerText = '';
+      this.inputMessage.innerText = '';
       this.isEdit = false;
     }
   }
 
   placeholderClick() {
     this.toggleMessageInput();
-    this.message.focus();
+    this.inputMessage.focus();
     this.isEdit = true;
   }
 
   messageBlur() {
-    const text = this.message.innerText.trim();
+    const text = this.inputMessage.innerText.trim();
     if (!text) {
       this.toggleMessageInput();
       this.isEdit = false;

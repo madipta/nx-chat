@@ -20,7 +20,7 @@ export const appRoutes: Routes = [
     ],
   },
   {
-    path: 'chat',
+    path: 'chat/:id',
     component: ChatComponent,
     children: [{ path: '', component: ChatViewComponent }],
   },

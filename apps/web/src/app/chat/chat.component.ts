@@ -4,7 +4,7 @@ import { Component, HostBinding } from '@angular/core';
   selector: 'app-chat',
   template: `
     <app-chat-header></app-chat-header>
-    <div class="overflow-y-auto mb-14">
+    <div class="overflow-x-hidden overflow-y-auto mb-14">
       <router-outlet></router-outlet>
     </div>
   `,
