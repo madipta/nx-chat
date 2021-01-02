@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   template: `
-    <app-main-header (MainMenuSelected)="onMainMenuSelected($event)"></app-main-header>
-    <div class="overflow-y-auto">
+    <app-main-header
+      (MainMenuSelected)="onMainMenuSelected($event)"
+      ng-chat-app-header>
+    </app-main-header>
+    <div ng-chat-app-body>
       <router-outlet></router-outlet>
     </div>
   `,

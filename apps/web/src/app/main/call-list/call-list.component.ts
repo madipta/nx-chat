@@ -1,13 +1,13 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CallService } from '../../services/call.service';
 
 @Component({
   selector: 'app-call-list',
   template: `
-    <ng-chat-calls></ng-chat-calls>
-    <div 
-      (tap)="notImplemented()"
-      class="absolute bottom-0 right-0 cursor-pointer p-3 mr-5 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
+    <ng-chat-calls [callHistory]="callHistory"></ng-chat-calls>
+    <div ng-chat-fab>
       <svg
+        (tap)="notImplemented()"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         class="w-6 h-6"
@@ -17,9 +17,16 @@ import { Component, HostBinding } from '@angular/core';
     </div>
   `,
 })
-export class CallListComponent {
-  @HostBinding('className') rootClass = 'flex flex-col px-2';
+export class CallListComponent implements OnInit {
+
+  callHistory = [];
+
+  constructor(private callService: CallService) {}
   
+  ngOnInit() {
+    this.callHistory = this.callService.GetCallHistory();
+  }
+
   notImplemented() {
     alert('Not Implemented.');
   }

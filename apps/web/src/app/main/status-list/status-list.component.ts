@@ -1,13 +1,13 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StatusService } from '../../services/status.service';
 
 @Component({
   selector: 'app-status-list',
   template: `
     <ng-chat-statuses [me]="me" [recent]="recent" [viewed]="viewed" [muted]="muted"></ng-chat-statuses>
-    <div 
-      (tap)="notImplemented()"
-      class="absolute bottom-0 right-0 cursor-pointer p-3 mr-5 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
+    <div ng-chat-fab>
       <svg
+        (tap)="notImplemented()"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         class="w-6 h-6"
@@ -17,43 +17,20 @@ import { Component, HostBinding, Input } from '@angular/core';
     </div>
   `,
 })
-export class StatusListComponent {
-  @HostBinding('className') rootClass = 'flex flex-col pb-20';
+export class StatusListComponent implements OnInit {
+  me = {};
+  recent = [];
+  viewed = [];
+  muted = [];
 
-  me = {
-    name: 'Vincent Mangano',
-    photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-    lastDate: 'yesterday',
-  };
-
-  recent = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
-
-   viewed = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
-
-  muted = [
-    {
-      name: 'Vincent Mangano',
-      photoUrl: 'https://randomuser.me/api/portraits/men/21.jpg',
-      lastDate: 'yesterday',
-    },
-  ];
+  constructor(private statusService: StatusService) {}
+  
+  ngOnInit() {
+    this.me = this.statusService.GetMyStatus();
+    this.recent = this.statusService.GetRecentStatus();
+    this.viewed = this.statusService.GetViewedStatus();
+    this.muted = this.statusService.GetMutedStatus();
+  }
 
   notImplemented() {
     alert('Not Implemented.');

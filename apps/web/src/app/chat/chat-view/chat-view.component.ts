@@ -5,7 +5,7 @@ import { ChatService } from '../../services/chat.service';
 @Component({
   selector: 'app-chat-view',
   template: `
-    <div class="max-w-screen-sm pb-12 mx-auto">
+    <div class="max-w-screen-sm mx-auto">
       <ng-chat-detail [messages]="messages"></ng-chat-detail>
     </div>
     <div class="absolute bottom-0 left-0 right-0">

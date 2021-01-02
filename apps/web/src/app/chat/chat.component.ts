@@ -3,8 +3,8 @@ import { Component, HostBinding } from '@angular/core';
 @Component({
   selector: 'app-chat',
   template: `
-    <app-chat-header></app-chat-header>
-    <div class="overflow-x-hidden overflow-y-auto mb-14">
+    <app-chat-header ng-chat-app-header></app-chat-header>
+    <div ng-chat-app-body class="mb-14">
       <router-outlet></router-outlet>
     </div>
   `,

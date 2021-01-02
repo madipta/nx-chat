@@ -5,13 +5,10 @@ import { ChatService } from '../../services/chat.service';
 @Component({
   selector: 'app-chat-list',
   template: `
-    <div class="pb-12">
-      <ng-chat-list [list]="chatList" (ChatSelected)="onChatSelected($event)"></ng-chat-list>
-    </div>
-    <div 
-      (tap)="notImplemented()"
-      class="absolute bottom-0 right-0 cursor-pointer p-3 mr-5 mb-3 bg-green-500 transition hover:bg-green-600 text-gray-200 border-4 border-gray-100 rounded-full shadow-lg">
+    <ng-chat-list [list]="chatList" (ChatSelected)="onChatSelected($event)"></ng-chat-list>
+    <div ng-chat-fab>
       <svg 
+        (tap)="notImplemented()"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         class="inline w-6 h-6"
@@ -23,6 +20,7 @@ import { ChatService } from '../../services/chat.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatListComponent implements OnInit {
+
   chatList = [];
 
   constructor(private router: Router, private chatService: ChatService) {}
