@@ -44,10 +44,18 @@ export class EventsGateway implements OnModuleInit {
     return { user, channels };
   }
 
+  @SubscribeMessage('join')
+  async join(client: Socket, data: string[]): Promise<WsResponse<string[]>> {
+    const event = 'joined';
+    client.join(data);
+    return { event, data };
+  }
+
   @SubscribeMessage('pm')
   async pm(client: Socket, data: ChatData): Promise<WsResponse<ChatData>> {
     const event = 'pm';
     client.to(data.channel).emit(event, data);
+    console.log(data);    
     return { event, data };
   }
 }
