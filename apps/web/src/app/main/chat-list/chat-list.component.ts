@@ -26,7 +26,7 @@ export class ChatListComponent implements OnInit {
   constructor(private router: Router, private chatService: ChatService) {}
 
   ngOnInit(): void {
-    this.chatList = this.chatService.GetUserChatList();
+    this.chatList = this.chatService.GetContactList();
   }
 
   onChatSelected(chat) {
