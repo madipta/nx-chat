@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src="socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:3333');
+      socket.on('connect', function () {
+        console.log('Connected');
+
+        socket.emit('login', { username: 'vima', password: '' }, (data) => {
+          if (data.user) {
+            if (data.channels.length) {
+              socket.emit('join', data.channels);
+            }
+          }
+        });
+      });
+      socket.on('joined', function (data) {
+        console.log('joined', data);
+      });
+      socket.on('pm', (response) => {
+        var res = document.getElementById('response');
+        var msg = response.message.replace(/\n/g, '<br>');
+        res.innerHTML = `<p>${msg}</p>` + res.innerHTML;
+      });
+      socket.on('exception', function (data) {
+        console.log('event', data);
+      });
+      socket.on('disconnect', function () {
+        console.log('Disconnected');
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="response">...</div>
+  </body>
+</html>
