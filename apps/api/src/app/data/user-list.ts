@@ -1,6 +1,6 @@
-import { User } from "./User";
+import { UserDto } from "@nx-chat/dto";
 
-export const UserList: User[] = [
+export const UserList: UserDto[] = [
   {
     userId: '1',
     username: 'vima',

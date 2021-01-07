@@ -1,156 +1,60 @@
 import { Injectable } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
+import { ChatMessageDto, ContactDto } from '@nx-chat/dto';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
+  constructor(private socket: Socket, private authService: AuthService) {}
 
-  constructor() { }
-
-  GetContactList(userId: string) {
-    return [
-      {
-        userId: '1',
-        name: 'Vincent Mangano',
-        lastActive: 'yesterday',
-        newMessageCount: 5,
-        photoUrl: '/assets/img/21.jpg',
-        lastMessage: 'Money talks. The more money, the louder it talks.',
-      },
-      {
-        userId: '2',
-        name: 'Carlo Gambino',
-        lastActive: 'yesterday',
-        newMessageCount: 25,
-        photoUrl: '/assets/img/66.jpg',
-        lastMessage: 'Everybody you fight is not your enemy and everybody that helps you is not your friend.',
-      },
-      {
-        userId: '3',
-        name: 'Salvatore Gravano',
-        lastActive: 'yesterday',
-        newMessageCount: 123,
-        photoUrl: '/assets/img/79.jpg',
-        lastMessage: 'Don\'t ever take sides with anyone against the family.'
-      },
-      {
-        userId: '4',
-        name: 'Giuseppe Masseria',
-        lastActive: 'yesterday',
-        newMessageCount: 1231,
-        photoUrl: '/assets/img/82.jpg',
-        lastMessage: 'Blood makes you related. Loyalty makes you family.',
-      },
-      {
-        userId: '5',
-        name: 'Anthony Anastasio',
-        lastActive: 'yesterday',
-        newMessageCount: 8,
-        photoUrl: '/assets/img/7.jpg',
-        lastMessage: 'Knowledge will give you power but character will give you respect.',
-      },
-      {
-        userId: '6',
-        name: 'Vincent Gigante',
-        lastActive: 'yesterday',
-        newMessageCount: 65,
-        photoUrl: '/assets/img/40.jpg',
-        lastMessage: 'I don\'t trust words, I even question actions but I never doubt patterns',
-      },
-      {
-        userId: '7',
-        name: 'Alessandro Vollero',
-        lastActive: 'yesterday',
-        newMessageCount: 907,
-        photoUrl: '/assets/img/29.jpg',
-        lastMessage: 'No one gives it to you. You have to take it.',
-      },
-      {
-        userId: '8',
-        name: 'Charlie Luciano',
-        position: 'Lucky',
-        lastActive: 'yesterday',
-        newMessageCount: 4,
-        photoUrl: '/assets/img/71.jpg',
-        lastMessage: 'Keep your friends close and your enemy closer..',
-      },
-    ];
+  onContactsResult(): Observable<ContactDto[]> {
+    this.socket.emit('contacts', { userId: this.authService.getUser().userId });
+    return new Observable<ContactDto[]>((observer) => {
+      this.socket.on('contacts-result', (data: ContactDto[]) => {
+        observer.next(data);
+      });
+    });
   }
 
-  GetChat(chatId: string/*hostId: number, guestId: number*/) {
+  onChatResult(): Observable<ChatMessageDto[]> {
+    return new Observable<ChatMessageDto[]>((observer) => {
+      this.socket.on('mp', (data: ChatMessageDto[]) => {
+        observer.next(data);
+      });
+    });
+  }
+
+  sendChat(message: string, channel: string) {
+    this.socket.emit('pm', {
+      sender: this.authService.getUser(),
+      message,
+      channel,
+    });
+  }
+
+  GetChat(chatId: string /*hostId: number, guestId: number*/) {
     return [
       {
-        body: 'some looooooooooooooooooooooooooooooooooooooong message ...',
-        date: 'yesterday',
+        sender: {
+          userId: '1',
+          name: 'who?'
+        },
+        message: 'some looooooooooooooooooooooooooooooooooooooong message ...',
+        channel: 'channel',
         at: '1:49 PM',
       },
       {
-        body: 'hmm',
-        date: 'yesterday',
+        sender: {
+          userId: '4',
+          name: 'me'
+        },
+        message: 'some looooooooooooooooooooooooooooooooooooooong message ...',
+        channel: 'channel',
         at: '1:49 PM',
       },
-      {
-        reply: true,
-        body: 'some reply ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: 'some message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: 'some sample message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        reply: true,
-        body: 'some reply message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        reply: true,
-        body: 'some message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: 'lorem ipsum apalah apa kek iyalah iya dong ada deh ada aja...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: `
-          bla bla...bla bla...bla bla...bla bla...bla bla...bla 
-          bla...bla bla...bla bla...bla bla...bla bla...bla bla...
-          bla bla...bla bla...bla bla...bla bla...bla bla...
-          bla bla...bla bla...bla bla...bla bla...bla bla...`,
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: 'some message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        body: 'some message ...',
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-      {
-        reply: true,
-        body: `
-          bla bla...bla bla...bla bla...bla bla...bla bla...bla 
-          bla...bla bla...bla bla...bla bla...bla bla...bla bla...
-          bla bla...bla bla...bla bla...bla bla...bla bla...
-          bla bla...bla bla...bla bla...bla bla...bla bla...`,
-        date: 'yesterday',
-        at: '1:49 PM',
-      },
-    ]
+    ];
   }
 }

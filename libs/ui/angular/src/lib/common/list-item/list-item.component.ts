@@ -3,7 +3,7 @@ import { Component, HostBinding } from '@angular/core';
 @Component({
   selector: 'ng-chat-list-item',
   template: `
-    <div class="flex items-center py-3 px-2 border-b border-gray-100 overflow-hidden">
+    <div class="flex items-center py-3 px-2 border-b border-gray-100 mx-2 overflow-hidden">
       <div class="flex-none">
         <ng-content select="[start]"></ng-content>
       </div>

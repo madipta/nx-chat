@@ -5,9 +5,7 @@ import { Call } from './call';
   selector: 'ng-chat-calls',
   template: `
     <ng-chat-activity-list-item
-      [userName]="call.name"
-      [userPhotoUrl]="call.photoUrl"
-      [description]="call.date"
+      [contact]="call"
       *ngFor="let call of callHistory">
       <div additional class="text-green-600 mr-2">
         <svg 

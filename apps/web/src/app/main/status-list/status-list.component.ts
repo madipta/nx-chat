@@ -7,7 +7,7 @@ import { StatusService } from '../../services/status.service';
     <ng-chat-statuses [me]="me" [recent]="recent" [viewed]="viewed" [muted]="muted"></ng-chat-statuses>
     <div ng-chat-fab>
       <svg
-        (tap)="notImplemented()"
+        ng-chat-not-implemented
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         class="w-6 h-6"
@@ -30,9 +30,5 @@ export class StatusListComponent implements OnInit {
     this.recent = this.statusService.GetRecentStatus();
     this.viewed = this.statusService.GetViewedStatus();
     this.muted = this.statusService.GetMutedStatus();
-  }
-
-  notImplemented() {
-    alert('Not Implemented.');
   }
 }

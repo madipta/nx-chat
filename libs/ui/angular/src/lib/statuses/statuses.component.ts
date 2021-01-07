@@ -4,10 +4,7 @@ import { Status } from './status';
 @Component({
   selector: 'ng-chat-statuses',
   template: `
-    <ng-chat-activity-list-item
-      [userName]="me.name"
-      [userPhotoUrl]="me.photoUrl"
-      [description]="me.lastDate">
+    <ng-chat-activity-list-item [contact]="me">
     </ng-chat-activity-list-item>
     <ng-chat-status-group title="Recent updates" [users]="recent"></ng-chat-status-group>
     <ng-chat-status-group title="Viewed updates" [users]="viewed"></ng-chat-status-group>

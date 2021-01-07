@@ -7,7 +7,7 @@ import { CallService } from '../../services/call.service';
     <ng-chat-calls [callHistory]="callHistory"></ng-chat-calls>
     <div ng-chat-fab>
       <svg
-        (tap)="notImplemented()"
+        ng-chat-not-implemented
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         class="w-6 h-6"
@@ -25,9 +25,5 @@ export class CallListComponent implements OnInit {
   
   ngOnInit() {
     this.callHistory = this.callService.GetCallHistory();
-  }
-
-  notImplemented() {
-    alert('Not Implemented.');
   }
 }

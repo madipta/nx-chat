@@ -1,5 +1,6 @@
 import { OnModuleInit } from '@nestjs/common';
 import {
+  ConnectedSocket,
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
@@ -7,9 +8,7 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { ChatData } from './data/chat-data';
-import { LoginData } from './data/login-data';
-import { LoginResult } from './data/login-result';
+import { ChatMessageDto, ContactDto, LoginDto, UserDto } from '@nx-chat/dto';
 import { UserService } from './services/user.service';
 
 @WebSocketGateway()
@@ -24,38 +23,40 @@ export class EventsGateway implements OnModuleInit {
   }
 
   @SubscribeMessage('login')
-  async login(@MessageBody() data: LoginData): Promise<LoginResult> {
-    const user = this.userService.Login(data.username);
-    const channels = [];
-    if (user) {
-      const userId = +user.userId;
-      for (let i = 1; i < 9; i++) {
-        if (i === userId) {
-          continue;
-        }
-        if (i < userId) {
-          channels.push(`channel ${i}-${userId}`);
-        }
-        if (i > userId) {
-          channels.push(`channel ${userId}-${i}`);
-        }
-      }
+  async login(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() dto: LoginDto
+  ): Promise<UserDto> {
+    const loginResult = this.userService.Login(dto.username);
+    client.emit('login-result', loginResult);
+    if (loginResult) {
+      const contacts = this.userService.GetContacts(loginResult.userId);
+      const channels = contacts.map(contact => contact.channel);
+      client.join(channels);    
     }
-    return { user, channels };
+    return loginResult;
   }
 
-  @SubscribeMessage('join')
-  async join(client: Socket, data: string[]): Promise<WsResponse<string[]>> {
-    const event = 'joined';
-    client.join(data);
-    return { event, data };
+  @SubscribeMessage('contacts')
+  async contacts(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() dto: { userId: string }
+  ): Promise<ContactDto[]> {
+    const contacts = this.userService.GetContacts(dto.userId);
+    client.emit('contacts-result', contacts);
+    return contacts;
   }
 
   @SubscribeMessage('pm')
-  async pm(client: Socket, data: ChatData): Promise<WsResponse<ChatData>> {
-    const event = 'pm';
-    client.to(data.channel).emit(event, data);
-    console.log(data);    
-    return { event, data };
+  async pm(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() dto: ChatMessageDto
+  ): Promise<WsResponse<ChatMessageDto>> {
+    const event = 'mp';
+    dto.at = new Date().toISOString();
+    client.to(dto.channel).emit(event, dto);
+    console.log(dto);
+    
+    return { event, data: dto };
   }
 }

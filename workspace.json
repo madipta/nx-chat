@@ -10,6 +10,9 @@
         "build": {
           "executor": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "socket.io-client"
+            ],
             "customWebpackConfig": {
               "path": "./webpack.config.js"
             },
@@ -221,6 +224,31 @@
           ],
           "options": {
             "jestConfig": "libs/ui/angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dto": {
+      "root": "libs/dto",
+      "sourceRoot": "libs/dto/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dto/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/dto"
+          ],
+          "options": {
+            "jestConfig": "libs/dto/jest.config.js",
             "passWithNoTests": true
           }
         }

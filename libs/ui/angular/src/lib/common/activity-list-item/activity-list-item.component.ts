@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ContactDto } from '@nx-chat/dto';
 
 @Component({
   selector: 'ng-chat-activity-list-item',
@@ -6,16 +7,18 @@ import { Component, Input } from '@angular/core';
     <ng-chat-list-item>
       <div start>
         <img
-          [alt]="userName"
-          [src]="userPhotoUrl"
+          [alt]="contact.name"
+          [src]="contact.photoUrl"
           loading="lazy"
           width="48"
           height="48"
           class="rounded-full mx-auto">
       </div>
       <div middle>
-        <div class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{userName}}</div>
-        <div class="text-xs text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</div>
+        <div class="text-sm text-gray-800 font-bold leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">
+          {{contact.name}} <i class="text-xs text-gray-400 font-normal ml-1">~{{contact.username}}</i>
+        </div>
+        <div class="text-xs text-gray-500 leading-tight whitespace-nowrap overflow-ellipsis overflow-hidden">{{contact.lastMessage}}</div>
       </div>
       <div end>
         <ng-content select="[additional]"></ng-content>
@@ -24,7 +27,5 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class ActivityListItemComponent {
-  @Input() userName = '';
-  @Input() userPhotoUrl = '';
-  @Input() description = '';
+  @Input() contact: ContactDto;
 }

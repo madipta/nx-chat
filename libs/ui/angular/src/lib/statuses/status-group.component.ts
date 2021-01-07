@@ -7,9 +7,7 @@ import { Component, Input } from '@angular/core';
       {{title}}
     </div>
     <ng-chat-activity-list-item
-      [userName]="user.name"
-      [userPhotoUrl]="user.photoUrl"
-      [description]="user.lastDate"
+      [contact]="user"
       *ngFor="let user of users">
     </ng-chat-activity-list-item>
   `,
