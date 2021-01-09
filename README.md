@@ -43,7 +43,7 @@ available username is hardcoded in data/user-list.ts
 vima, carl, sal, giu, tony, vingi, alevo, luci  
 no password is required  
 
-USE DIFFERENT BROWSER!
+USE DIFFERENT BROWSER!  
 because this sample application using local storage  to remember user auth  
 
-chat message is not persistance so it will disapear after refresh or go to another link
+*chat message is not persistance so it will disapear after refresh or go to another link*
