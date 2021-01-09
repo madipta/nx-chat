@@ -53,7 +53,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onChatSelected(chat) {
-    this.router.navigateByUrl(`/chat/${chat.channel}`);
+  onChatSelected(chat: ContactDto) {
+    this.router.navigateByUrl(`/chat/${chat.channel}/${chat.userId}`);
   }
 }

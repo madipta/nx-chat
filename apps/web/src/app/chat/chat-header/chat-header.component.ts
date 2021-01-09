@@ -19,9 +19,9 @@ import { Component, Input } from '@angular/core';
         width="42"
         height="42"
         class="rounded-full mx-auto">
-      <div class="flex flex-col flex-grow mx-3">
-        <h2 class="leading-tight text-lg font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{name}}</h2>
-        <p class="leading-tight text-sm text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
+      <div class="flex flex-col flex-grow text-sm mx-2">
+        <h2 class="leading-tight font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{name}}</h2>
+        <p class="leading-tight text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
       </div>
       <div class="flex-none flex-nowrap">
         <svg 
@@ -53,7 +53,7 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class ChatHeaderComponent {
-  @Input() name = 'xxx';
-  @Input() photoUrl = 'https://randomuser.me/api/portraits/men/1.jpg';
+  @Input() name = '';
+  @Input() photoUrl = '';
   @Input() description = 'zzz';
 }

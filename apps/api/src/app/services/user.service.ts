@@ -12,6 +12,10 @@ export class UserService {
     return UserList.map((user) => user.username);
   }
 
+  GetUser(userId: string) {
+    return UserList.filter(contact => contact.userId === userId);
+  }
+
   GetContacts(hostId: string): ContactDto[] {
     return UserList.filter((user) => user.userId != hostId).map((user) => {
       const { userId } = user;

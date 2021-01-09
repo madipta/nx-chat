@@ -29,12 +29,23 @@ export class EventsGateway implements OnModuleInit {
   ): Promise<UserDto> {
     const loginResult = this.userService.Login(dto.username);
     client.emit('login-result', loginResult);
-    if (loginResult) {
-      const contacts = this.userService.GetContacts(loginResult.userId);
-      const channels = contacts.map(contact => contact.channel);
-      client.join(channels);    
-    }
     return loginResult;
+  }
+
+  @SubscribeMessage('channels')
+  async channels(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() dto: { userId: string }
+  ): Promise<string[]> {
+    const contacts = this.userService.GetContacts(dto.userId);
+    const channels = contacts.map((contact) => contact.channel);
+    const rooms = client.adapter.rooms;
+    for (const channel in channels) {
+      if (!rooms[channel]) {
+        client.join(channels[channel]);
+      }
+    }
+    return channels;
   }
 
   @SubscribeMessage('contacts')
@@ -47,6 +58,17 @@ export class EventsGateway implements OnModuleInit {
     return contacts;
   }
 
+  @SubscribeMessage('contact')
+  async contact(
+    @MessageBody() dto: { userId: string }
+  ): Promise<UserDto> {
+    const user = this.userService.GetUser(dto.userId);
+    if (user.length) {
+      return user[0];
+    }
+    return null;
+  }
+
   @SubscribeMessage('pm')
   async pm(
     @ConnectedSocket() client: Socket,
@@ -55,8 +77,7 @@ export class EventsGateway implements OnModuleInit {
     const event = 'mp';
     dto.at = new Date().toISOString();
     client.to(dto.channel).emit(event, dto);
-    console.log(dto);
-    
+
     return { event, data: dto };
   }
 }

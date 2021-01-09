@@ -31,10 +31,10 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.getUser();
+    return !!this.CurrentUser();
   }
 
-  getUser(): UserDto {
+  CurrentUser(): UserDto {
     return JSON.parse(localStorage.getItem('user'));
   }
 

@@ -22,7 +22,7 @@ export const appRoutes: Routes = [
     ],
   },
   {
-    path: 'chat/:id',
+    path: 'chat/:channel/:guest',
     component: ChatComponent,
     canActivate: [AuthGuard],
     children: [{ path: '', component: ChatViewComponent }],
