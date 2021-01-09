@@ -18,6 +18,7 @@ import { ChatService } from '../../services/chat.service';
   selector: 'app-chat-view',
   template: `
     <div class="max-w-screen-sm mx-auto">
+      <div class="leading-tight text-center text-xs text-gray-600 pt-1">you are: {{host.name}}</div>
       <ng-chat-detail [messages]="messages" [host]="host"></ng-chat-detail>
     </div>
     <div class="absolute bottom-0 left-0 right-0">
@@ -108,8 +109,10 @@ export class ChatViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.host = this.authService.CurrentUser();
     this.channel = this.route.snapshot.params['channel'];
     this.subscription = this.chatService.onChatReceived().subscribe((res) => {
-      this.messages.push(res);
-      this.cdr.markForCheck();
+      if (res.channel === this.channel) {
+        this.messages.push(res);
+        this.cdr.markForCheck();
+      }
     });
   }
 

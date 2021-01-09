@@ -20,10 +20,10 @@ export class ChatService {
     });
   }
 
-  onChatReceived(): Observable<ChatMessageDto[]> {
+  onChatReceived(): Observable<ChatMessageDto> {
     this.joinChannels();
-    return new Observable<ChatMessageDto[]>((observer) => {
-      this.socket.on('mp', (data: ChatMessageDto[]) => {
+    return new Observable<ChatMessageDto>((observer) => {
+      this.socket.on('mp', (data: ChatMessageDto) => {
         observer.next(data);
       });
     });
