@@ -34,10 +34,10 @@ run nest api server
 ## Demo
 
 open  http://localhost:4200 in two or more different browser with different user, ex:
-No. | Browser | Username
+ No | Browser | Username
 ----|---------|---------
-1   | Chrome  | vima
-2   | Firefox | carl
+  1 | Chrome  | vima
+  2 | Firefox | carl
 
 available username is hardcoded in data/user-list.ts  
 vima, carl, sal, giu, tony, vingi, alevo, luci  
