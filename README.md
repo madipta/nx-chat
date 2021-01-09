@@ -1,5 +1,5 @@
 # NxChat
-Sample chat application using websocket  
+Simple chat application using websocket  
 
 Monorepo: Nx  
 Backend: Nestjs  
@@ -44,3 +44,6 @@ vima, carl, sal, giu, tony, vingi, alevo, luci
 no password is required  
 
 USE DIFFERENT BROWSER!
+because this sample application using local storage  to remember user auth  
+
+chat message is not persistance so it will disapear after refresh or go to another link
