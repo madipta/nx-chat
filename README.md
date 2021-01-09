@@ -33,11 +33,15 @@ run nest api server
 ## Demo
 
 open two different browser with different user, ex:
+
 chrome browser 1 - username: vima
+
 firefox browser 2 - username: carl
 
 available username is hardcoded in data/user-list.ts
+
 vima, carl, sal, giu, tony, vingi, alevo, luci
+
 no password is required
 
 USE DIFFERENT BROWSER!
