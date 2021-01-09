@@ -1,31 +1,33 @@
 # NxChat
 Sample chat application using
-Monorepo: Nx
-Backend Js Framework: Nestjs
-Frontend Js Framework: Angular
-Css toolkit: TailwindCss
+- Monorepo: Nx
+- Backend Js Framework: Nestjs
+- Frontend Js Framework: Angular
+- Css toolkit: TailwindCss
 
 
 ## How to Install
 
 clone project
-git clone https://github.com/madipta/nx-chat.git
+`git clone https://github.com/madipta/nx-chat.git`
 
 go to nx-chat folder and install packages
+```
 cd nx-chat
 run npm install or yarn
+```
 
 
 ## How to Run
 
 install nx cli globaly if you haven't installed
-npm install -g nx
+`npm install -g nx`
 
 run angular web server
-nx serve
+`nx serve`
 
 run nest api server
-nx serve api
+`nx serve api`
 
 
 ## Demo
