@@ -1,12 +1,10 @@
 # NxChat
 Sample chat application using websocket  
 
- | 
-------------
-Monorepo: | Nx
-Backend: | Nestjs
-Frontend: | Angular
-Css toolkit: | TailwindCss
+Monorepo: Nx  
+Backend: Nestjs  
+Frontend: Angular  
+Css toolkit: TailwindCss  
 
 
 ## How to Install
