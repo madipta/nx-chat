@@ -32,7 +32,7 @@ run nest api server
 
 ## Demo
 
-open two different browser with different user, ex:
+open  http://localhost:4200 in two different browser with different user, ex:
 No. | Browser | Username
 ----|---------|---------
 1   | Chrome  | vima
