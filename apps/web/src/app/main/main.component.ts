@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
       <router-outlet></router-outlet>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent {
   @HostBinding('className') rootClass = 'relative flex flex-col h-screen';

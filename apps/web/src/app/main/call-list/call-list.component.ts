@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CallService } from '../../services/call.service';
 
 @Component({
@@ -16,6 +16,7 @@ import { CallService } from '../../services/call.service';
       </svg>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CallListComponent implements OnInit {
 

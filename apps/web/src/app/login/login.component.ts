@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -38,6 +38,7 @@ import { AuthService } from '../services/auth.service';
       </a>
     </form>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit, OnDestroy {
   @HostBinding('className') rootcss = 'flex flex-col place-content-center max-w-screen-md h-screen bg-gradient-to-b from-green-100 to-gray-100 mx-auto';

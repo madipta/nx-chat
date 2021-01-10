@@ -8,8 +8,11 @@ import {
   WsResponse,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { customAlphabet } from 'nanoid';
 import { ChatMessageDto, ContactDto, LoginDto, UserDto } from '@nx-chat/dto';
 import { UserService } from './services/user.service';
+
+const nanoid = customAlphabet('1234567890abcdef', 10);
 
 @WebSocketGateway()
 export class EventsGateway implements OnModuleInit {
@@ -59,9 +62,7 @@ export class EventsGateway implements OnModuleInit {
   }
 
   @SubscribeMessage('contact')
-  async contact(
-    @MessageBody() dto: { userId: string }
-  ): Promise<UserDto> {
+  async contact(@MessageBody() dto: { userId: string }): Promise<UserDto> {
     const user = this.userService.GetUser(dto.userId);
     if (user.length) {
       return user[0];
@@ -75,6 +76,7 @@ export class EventsGateway implements OnModuleInit {
     @MessageBody() dto: ChatMessageDto
   ): Promise<WsResponse<ChatMessageDto>> {
     const event = 'mp';
+    dto.id = nanoid();
     dto.at = new Date().toISOString();
     client.to(dto.channel).emit(event, dto);
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ContactDto } from '@nx-chat/dto';
 
 @Component({
@@ -25,6 +25,7 @@ import { ContactDto } from '@nx-chat/dto';
       </div>
     </ng-chat-list-item>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivityListItemComponent {
   @Input() contact: ContactDto;

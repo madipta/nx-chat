@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StatusService } from '../../services/status.service';
 
 @Component({
@@ -16,6 +16,7 @@ import { StatusService } from '../../services/status.service';
       </svg>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusListComponent implements OnInit {
   me = {};

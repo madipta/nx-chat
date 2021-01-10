@@ -18,14 +18,12 @@ import { ChatService } from '../../services/chat.service';
   selector: 'app-chat-view',
   template: `
     <div class="max-w-screen-sm mx-auto">
-      <div class="leading-tight text-center text-xs text-gray-600 pt-1">you are: {{host.name}}</div>
+      <div class="leading-tight text-center text-xs text-gray-500 pt-1">you are: {{host.name}}</div>
       <ng-chat-detail [messages]="messages" [host]="host"></ng-chat-detail>
     </div>
     <div class="absolute bottom-0 left-0 right-0">
       <div class="flex w-full max-w-screen-sm px-1 mx-auto mb-2">
-        <div
-          class="flex-grow flex items-end bg-white px-3 py-2 rounded-3xl shadow mr-1"
-        >
+        <div class="flex-grow flex items-end bg-white px-3 py-2 rounded-3xl shadow mr-1">
           <svg
             ng-chat-not-implemented
             xmlns="http://www.w3.org/2000/svg"
@@ -33,8 +31,7 @@ import { ChatService } from '../../services/chat.service';
             stroke="#aaa"
             stroke-width="2"
             class="w-6 h-6"
-            viewBox="0 0 32 32"
-          >
+            viewBox="0 0 32 32">
             <circle cx="16" cy="16" r="13" />
             <g stroke-linejoin="round" stroke-miterlimit="10">
               <path d="M10.7 19c1.4 1.2 3.3 2 5.3 2s3.9-.8 5.3-2M12 12v5" />
@@ -44,8 +41,7 @@ import { ChatService } from '../../services/chat.service';
           <div
             #placeholder
             (tap)="placeholderClick()"
-            class="text-gray-400 w-full mx-3"
-          >
+            class="text-gray-400 w-full mx-3">
             Type a Message
           </div>
           <div
@@ -110,7 +106,7 @@ export class ChatViewComponent implements OnInit, AfterViewInit, OnDestroy {
     this.channel = this.route.snapshot.params['channel'];
     this.subscription = this.chatService.onChatReceived().subscribe((res) => {
       if (res.channel === this.channel) {
-        this.messages.push(res);
+        this.messages = [ ...this.messages, res ];
         this.cdr.markForCheck();
       }
     });

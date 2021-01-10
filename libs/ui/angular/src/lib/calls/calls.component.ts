@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { Call } from './call';
 
 @Component({
@@ -27,6 +27,7 @@ import { Call } from './call';
       </div>
     </ng-chat-activity-list-item>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CallsComponent {
   @HostBinding('className') rootClass = 'flex flex-col w-full max-w-md mx-auto';

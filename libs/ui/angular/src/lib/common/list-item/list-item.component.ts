@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ng-chat-list-item',
@@ -15,6 +15,7 @@ import { Component, HostBinding } from '@angular/core';
       </div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListItemComponent {
   @HostBinding('className') rootClass = 'flex flex-col w-full max-w-md mx-auto';

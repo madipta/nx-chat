@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ng-chat-status-group',
@@ -11,6 +11,7 @@ import { Component, Input } from '@angular/core';
       *ngFor="let user of users">
     </ng-chat-activity-list-item>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusGroupComponent {
   @Input() title = '';

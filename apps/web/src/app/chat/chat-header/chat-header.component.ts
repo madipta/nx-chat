@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-header',
@@ -51,6 +51,7 @@ import { Component, Input } from '@angular/core';
       </div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatHeaderComponent {
   @Input() name = '';

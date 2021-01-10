@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { Status } from './status';
 
 @Component({
@@ -10,6 +10,7 @@ import { Status } from './status';
     <ng-chat-status-group title="Viewed updates" [users]="viewed"></ng-chat-status-group>
     <ng-chat-status-group title="Muted updates" [users]="muted"></ng-chat-status-group>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusesComponent {
   @HostBinding('className') rootClass = 'flex flex-col w-full max-w-md mx-auto';
