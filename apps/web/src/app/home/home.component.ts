@@ -36,6 +36,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.router.navigate(['/main']);
-    }, 5000);
+    }, 3000);
   }
 }

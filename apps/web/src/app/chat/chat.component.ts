@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
       [photoUrl]="photoUrl"
       ng-chat-app-header></app-chat-header>
     <div ng-chat-app-body class="mb-14">
-      <router-outlet></router-outlet>
+      <app-chat-view></app-chat-view>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
