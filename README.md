@@ -6,7 +6,7 @@ Backend: Nestjs
 Frontend: Angular  
 Css toolkit: TailwindCss  
 
-![alt text](https://github.com/madipta/nx-chat/blob/master/apps/web/src/assets/screenshot/screenshot-min.png, "WwalahApp screenshot")
+![WalahApp](https://github.com/madipta/nx-chat/blob/master/apps/web/src/assets/screenshot/screenshot-min.png)
 
 ## How to Install
 
