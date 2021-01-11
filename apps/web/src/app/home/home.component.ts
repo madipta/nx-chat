@@ -10,14 +10,14 @@ import { AuthService } from '../services/auth.service';
       <p class="text-xs text-gray-500 text-center">WalahApp</p>
       <p class="leading-none uppercase tracking-wider text-center text-5xl font-bold text-green-700 mb-10">Welcome</p>
       <img
-        [alt]="user.name"
-        [src]="user.photoUrl"
+        [alt]="user?.name"
+        [src]="user?.photoUrl"
         width="120"
         height="120"
         class="rounded-full mx-auto mb-5"
       />
-      <h1 class="leading-tight text-center font-medium text-gray-600">{{user.name}}</h1>
-      <h2 class="leading-tight text-center text-sm text-gray-500">{{user.username}}</h2>
+      <h1 class="leading-tight text-center font-medium text-gray-600">{{user?.name}}</h1>
+      <h2 class="leading-tight text-center text-sm text-gray-500">{{user?.username}}</h2>
     </div>
   `,
 })

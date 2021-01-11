@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { UiAngularModule } from '@nx-chat/ui/angular';
 import { AuthGuard } from '../auth.guard';
+import { HeaderComponent } from './header/header.component';
 import { CallListComponent } from './call-list/call-list.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MainComponent } from './main.component';
@@ -23,7 +25,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [
+    MainComponent,
+    HeaderComponent,
+    CallListComponent,
+    ContactsComponent,
+    PhotoComponent,
+    StatusListComponent,
+  ],
+  imports: [CommonModule, RouterModule.forChild(routes), UiAngularModule],
 })
 export class MainModule {}
