@@ -32,7 +32,7 @@ export class PhotoComponent {
   
   @HostListener('tap') close() {
     alert('Not Implemented.');
-    this.router.navigate(['/']);
+    this.router.navigate(['/main']);
   }
 
   constructor(private router: Router) {}

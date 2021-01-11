@@ -3,10 +3,16 @@ import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { UiAngularModule } from '@nx-chat/ui/angular';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatHeaderComponent } from './chat/chat-header/chat-header.component';
 import { ChatViewComponent } from './chat/chat-view/chat-view.component';
@@ -17,11 +23,6 @@ import { CallListComponent } from './main/call-list/call-list.component';
 import { HeaderComponent } from './main/header/header.component';
 import { PhotoComponent } from './main/photo/photo.component';
 import { StatusListComponent } from './main/status-list/status-list.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 const socketIoConfig: SocketIoConfig = {
   url: 'http://localhost:3333',
@@ -31,6 +32,7 @@ const socketIoConfig: SocketIoConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LoginComponent,
     MainComponent,
     ChatComponent,

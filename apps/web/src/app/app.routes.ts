@@ -8,10 +8,16 @@ import { PhotoComponent } from './main/photo/photo.component';
 import { StatusListComponent } from './main/status-list/status-list.component';
 import { ChatViewComponent } from './chat/chat-view/chat-view.component';
 import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
   {
     path: '',
+    component: HomeComponent,
+    canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'main',
     component: MainComponent,
     canActivateChild: [AuthGuard],
     children: [
@@ -28,5 +34,5 @@ export const appRoutes: Routes = [
     children: [{ path: '', component: ChatViewComponent }],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: 'main', pathMatch: 'full' },
 ];

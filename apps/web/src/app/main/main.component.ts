@@ -23,6 +23,6 @@ export class MainComponent {
 
   onMainMenuSelected(menu) {
     this.selected = menu;
-    this.router.navigate(['/' + menu]);
+    this.router.navigate(['/main/' + menu]);
   }
 }

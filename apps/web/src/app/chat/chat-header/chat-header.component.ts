@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'app-chat-header',
   template: `
     <div class="flex items-center w-full py-3">
-      <a routerLink="/">
+      <a routerLink="/main">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
