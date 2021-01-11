@@ -17,6 +17,11 @@ import { CallListComponent } from './main/call-list/call-list.component';
 import { HeaderComponent } from './main/header/header.component';
 import { PhotoComponent } from './main/photo/photo.component';
 import { StatusListComponent } from './main/status-list/status-list.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 const socketIoConfig: SocketIoConfig = {
   url: 'http://localhost:3333',
@@ -47,6 +52,19 @@ const socketIoConfig: SocketIoConfig = {
     HammerModule,
     SocketIoModule.forRoot(socketIoConfig),
     UiAngularModule,
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
