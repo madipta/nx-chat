@@ -6,6 +6,7 @@ Backend: Nestjs
 Frontend: Angular  
 Css toolkit: TailwindCss  
 
+https://github.com/madipta/nx-chat/blob/master/apps/web/src/assets/screenshot/screenshot-min.png
 
 ## How to Install
 
