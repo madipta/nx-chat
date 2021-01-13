@@ -1,24 +1,18 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
-import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
+    path: 'welcome',
+    loadChildren: async() => (await import('./welcome/welcome.module')).WelcomeModule,
     canActivate: [AuthGuard],
   },
   {
-    path: 'main',
-    loadChildren: async() => (await import('./main/main.module')).MainModule,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'chat/:channel/:guest',
-    loadChildren: async() => (await import('./chat/chat.module')).ChatModule,
+    path: 'home',
+    loadChildren: async() => (await import('./home/home.module')).HomeModule,
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'main', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { ContactDto } from '@nx-chat/dto';
 import { Subscription } from 'rxjs';
-import { ChatService } from '../../services/chat.service';
+import { ChatService } from '../../../services/chat.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -54,6 +54,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onChatSelected(chat: ContactDto) {
-    this.router.navigateByUrl(`/chat/${chat.channel}/${chat.userId}`);
+    this.router.navigateByUrl(`/home/chat/${chat.channel}/${chat.userId}`);
   }
 }

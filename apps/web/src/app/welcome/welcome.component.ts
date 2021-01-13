@@ -21,7 +21,7 @@ import { AuthService } from '../services/auth.service';
     </div>
   `,
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class WelcomeComponent implements OnInit, AfterViewInit {
   @HostBinding('className') rootcss =
     'bg-gray-50 flex flex-col place-content-center max-w-screen-md h-screen mx-auto';
 
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/home/main']);
     }, 3000);
   }
 }

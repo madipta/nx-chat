@@ -10,11 +10,8 @@ export class AuthService {
 
   constructor(private socket: Socket) {}
 
-  wslogin(model: any) {
+  wslogin(model: any): Observable<boolean> {
     this.socket.emit('login', model);
-  }
-
-  onLoginResult(): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.socket.on('login-result', (data: UserDto) => {
         observer.next(this.saveUser(data))});

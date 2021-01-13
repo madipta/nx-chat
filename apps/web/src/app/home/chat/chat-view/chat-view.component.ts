@@ -11,8 +11,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserDto } from '@nx-chat/dto';
-import { AuthService } from '../../services/auth.service';
-import { ChatService } from '../../services/chat.service';
+import { AuthService } from '../../../services/auth.service';
+import { ChatService } from '../../../services/chat.service';
 
 @Component({
   selector: 'app-chat-view',

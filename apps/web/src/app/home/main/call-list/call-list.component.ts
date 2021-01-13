@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CallService } from '../../services/call.service';
+import { CallService } from '../../../services/call.service';
 
 @Component({
   selector: 'app-call-list',

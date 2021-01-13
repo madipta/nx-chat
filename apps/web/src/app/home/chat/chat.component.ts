@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-chat',
@@ -24,7 +24,7 @@ export class ChatComponent {
   constructor(
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
