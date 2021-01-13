@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UiAngularModule } from '@nx-chat/ui/angular';
+import { mainRoutes } from './main.routes';
 import { HeaderComponent } from './header/header.component';
 import { CallListComponent } from './call-list/call-list.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -14,19 +15,6 @@ import * as fromContacts from './contacts/state/contacts.reducer';
 import { ContactsEffects } from './contacts/state/contacts.effects';
 import { ContactsFacade } from './contacts/state/contacts.facade';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: MainComponent,
-    children: [
-      { path: '', component: ContactsComponent },
-      { path: 'status', component: StatusListComponent },
-      { path: 'calls', component: CallListComponent },
-      { path: 'photo', component: PhotoComponent },
-    ],
-  },
-];
-
 @NgModule({
   declarations: [
     MainComponent,
@@ -38,7 +26,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(mainRoutes),
     UiAngularModule,
     StoreModule.forFeature(
       fromContacts.CONTACTS_FEATURE_KEY,
