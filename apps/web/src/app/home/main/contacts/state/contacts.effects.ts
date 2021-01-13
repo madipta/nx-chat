@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-
-import * as ContactsFeature from './contacts.reducer';
+import { take } from 'rxjs/operators';
 import * as ContactsActions from './contacts.actions';
+import { ContactService } from 'apps/web/src/app/services/contact.service';
 
 @Injectable()
 export class ContactsEffects {
@@ -11,11 +11,14 @@ export class ContactsEffects {
     this.actions$.pipe(
       ofType(ContactsActions.load),
       fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return ContactsActions.loadSuccess({ contacts: [] });
+        run: (action, state) => {
+          this.contactService
+            .GetUserContactList()
+            .pipe(take(1))
+            .subscribe((contacts) => {
+              ContactsActions.loadSuccess({ contacts });
+            });
         },
-
         onError: (action, error) => {
           console.error('Error', error);
           return ContactsActions.loadFail({ error });
@@ -24,5 +27,8 @@ export class ContactsEffects {
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private contactService: ContactService
+  ) {}
 }

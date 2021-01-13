@@ -1,29 +1,22 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
 import { ContactDto } from '@nx-chat/dto';
 import * as ContactsActions from './contacts.actions';
 
 export const CONTACTS_FEATURE_KEY = 'contacts';
 
-export interface ContactState extends EntityState<ContactDto> {
-  selectedId?: string | number; // which Contacts record has been selected
-  loaded: boolean; // has the Contacts list been loaded
-  error?: string | null; // last known error (if any)
+export interface ContactState {
+  contacts: ContactDto[];
+  selectedContact: ContactDto;
+  loaded: boolean;
+  error?: string | null;
 }
 
-export interface ContactsPartialState {
-  readonly [CONTACTS_FEATURE_KEY]: ContactState;
-}
-
-export const contactsAdapter: EntityAdapter<ContactDto> = createEntityAdapter<
-  ContactDto
->();
-
-export const initialState: ContactState = contactsAdapter.getInitialState({
-  // set initial required properties
+const initialState: ContactState = {
+  contacts: [],
+  selectedContact: null,
   loaded: false,
-});
+  error: null
+};
 
 const contactsReducer = createReducer(
   initialState,
@@ -32,12 +25,22 @@ const contactsReducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(ContactsActions.loadSuccess, (state, { contacts }) =>
-    contactsAdapter.setAll(contacts, { ...state, loaded: true })
-  ),
+  on(ContactsActions.loadSuccess, (state, { contacts }) =>({
+    ...state,
+    contacts,
+    loaded: true,
+  })),
   on(ContactsActions.loadFail, (state, { error }) => ({
     ...state,
     error,
+  })),
+  on(ContactsActions.contactSelect, (state, { contact }) => ({
+    ...state,
+    selectedContact: contact,
+  })),
+  on(ContactsActions.contactUnselect, (state) => ({
+    ...state,
+    selectedContact: null,
   }))
 );
 

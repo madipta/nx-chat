@@ -2,15 +2,11 @@ import { createAction, props } from '@ngrx/store';
 import { ContactDto } from '@nx-chat/dto';
 
 export enum ContactsAction {
-  Add = '[Contacts] Add',
-  AddSuccess = '[Contacts] Add Success',
-  AddFail = '[Contacts] Add Fail',
-  Remove = '[Contacts] Remove',
-  RemoveSuccess = '[Contacts] Remove Success',
-  RemoveFail = '[Contacts] Remove Fail',
   Load = '[Contacts] Load',
   LoadSuccess = '[Contacts] Load Success',
   LoadFail = '[Contacts] Load Fail',
+  ContactSelect = '[Contact] Select',
+  ContactUnselect = '[Contact] Unselect',
 }
 
 export const load = createAction(
@@ -27,3 +23,10 @@ export const loadFail = createAction(
   ContactsAction.LoadFail,
   props<{ error: any }>()
 );
+
+export const contactSelect = createAction(
+  ContactsAction.ContactSelect,
+  props<{ contact: ContactDto }>()
+);
+
+export const contactUnselect = createAction(ContactsAction.ContactUnselect);
