@@ -7,14 +7,13 @@ import { UserDto } from '@nx-chat/dto';
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(private socket: Socket) {}
 
   wslogin(model: any): Observable<boolean> {
-    this.socket.emit('login', model);
     return new Observable<boolean>((observer) => {
-      this.socket.on('login-result', (data: UserDto) => {
-        observer.next(this.saveUser(data))});
+      this.socket.emit('login', model, (data: UserDto) => {
+        observer.next(this.saveUser(data));
+      });
     });
   }
 

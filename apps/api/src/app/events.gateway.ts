@@ -30,9 +30,7 @@ export class EventsGateway implements OnModuleInit {
     @ConnectedSocket() client: Socket,
     @MessageBody() dto: LoginDto
   ): Promise<UserDto> {
-    const loginResult = this.userService.Login(dto.username);
-    client.emit('login-result', loginResult);
-    return loginResult;
+    return this.userService.Login(dto.username);
   }
 
   @SubscribeMessage('channels')
@@ -56,9 +54,7 @@ export class EventsGateway implements OnModuleInit {
     @ConnectedSocket() client: Socket,
     @MessageBody() dto: { userId: string }
   ): Promise<ContactDto[]> {
-    const contacts = this.userService.GetContacts(dto.userId);
-    client.emit('contacts-result', contacts);
-    return contacts;
+    return this.userService.GetContacts(dto.userId);
   }
 
   @SubscribeMessage('contact')

@@ -6,9 +6,11 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { ContactDto } from '@nx-chat/dto';
 import { Subscription } from 'rxjs';
 import { ChatService } from '../../../services/chat.service';
+import * as fromContacts from './state/contacts.reducer';
 
 @Component({
   selector: 'app-chat-list',
@@ -37,12 +39,14 @@ export class ContactsComponent implements OnInit, OnDestroy {
   contactList: ContactDto[] = [];
 
   constructor(
+    private store: Store<fromContacts.ContactState>,
     private cdr: ChangeDetectorRef,
     private router: Router,
     private chatService: ChatService
   ) {}
 
   ngOnInit(): void {
+    // ganti dgn store
     this.subscription = this.chatService.onContactsResult().subscribe((res) => {
       this.contactList = res;
       this.cdr.markForCheck();
@@ -54,6 +58,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onChatSelected(chat: ContactDto) {
+    // tambah store
     this.router.navigateByUrl(`/home/chat/${chat.channel}/${chat.userId}`);
   }
 }
