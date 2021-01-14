@@ -12,7 +12,7 @@ export const homeRoutes: Routes = [
           (await import('./main/main.module')).MainModule,
       },
       {
-        path: 'chat/:channel/:guest',
+        path: 'chat',
         loadChildren: async () =>
           (await import('./chat/chat.module')).ChatModule,
       },

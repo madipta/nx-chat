@@ -9,10 +9,7 @@ export enum ContactsAction {
   ContactUnselect = '[Contact] Unselect',
 }
 
-export const load = createAction(
-  ContactsAction.Load,
-  props<{ userId: string }>()
-);
+export const load = createAction(ContactsAction.Load);
 
 export const loadSuccess = createAction(
   ContactsAction.LoadSuccess,

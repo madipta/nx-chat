@@ -32,7 +32,7 @@ export class ContactService {
   GetUserContactList(): Observable<ContactDto[]> {
     const userId = this.authService.CurrentUser().userId;
     return new Observable<ContactDto[]>((observer) => {
-      this.socket.emit('user-contact-list', { userId }, (res) => {
+      this.socket.emit('contacts', { userId }, (res) => {
         observer.next(res);
       });
     });

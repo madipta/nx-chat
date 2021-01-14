@@ -10,18 +10,16 @@ import { AuthService } from './auth.service';
 export class ChatService {
   constructor(private socket: Socket, private authService: AuthService) {}
 
-  onContactsResult(): Observable<ContactDto[]> {
-    this.joinChannels();
-    this.socket.emit('contacts', { userId: this.authService.CurrentUser().userId });
+  GetContactList(): Observable<ContactDto[]> {
+    const userId = this.authService.CurrentUser().userId;
     return new Observable<ContactDto[]>((observer) => {
-      this.socket.on('contacts-result', (data: ContactDto[]) => {
+      this.socket.emit('contacts', { userId }, (data: ContactDto[]) => {
         observer.next(data);
       });
     });
   }
 
   onChatReceived(): Observable<ChatMessageDto> {
-    this.joinChannels();
     return new Observable<ChatMessageDto>((observer) => {
       this.socket.on('mp', (data: ChatMessageDto) => {
         observer.next(data);
@@ -29,12 +27,17 @@ export class ChatService {
     });
   }
 
-  sendChat(message: string, channel: string) {
-    this.socket.emit('pm', {
-      sender: this.authService.CurrentUser(),
-      message,
-      channel,
+  loadChat(): Observable<ChatMessageDto[]> {
+    const userId = this.authService.CurrentUser().userId;
+    return new Observable<ChatMessageDto[]>((observer) => {
+      this.socket.emit('chat-load', { userId }, (data: ChatMessageDto[]) => {
+        observer.next(data);
+      });
     });
+  }
+
+  sendChat(chatMessage: ChatMessageDto) {
+    this.socket.emit('pm', chatMessage);
   }
 
   joinChannels() {

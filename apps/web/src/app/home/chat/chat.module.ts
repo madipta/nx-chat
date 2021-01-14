@@ -9,6 +9,10 @@ import { chatRoutes } from './chat.routes';
 
 @NgModule({
   declarations: [ChatComponent, ChatHeaderComponent, ChatViewComponent],
-  imports: [CommonModule, UiAngularModule, RouterModule.forChild(chatRoutes)],
+  imports: [
+    CommonModule,
+    UiAngularModule,
+    RouterModule.forChild(chatRoutes),
+  ],
 })
 export class ChatModule {}

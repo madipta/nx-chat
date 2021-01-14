@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ContactsFacade } from '../../main/contacts/state/contacts.facade';
 
 @Component({
   selector: 'app-chat-header',
   template: `
-    <div class="flex items-center w-full py-3">
+    <div *ngIf="contact$ | async as contact" class="flex items-center w-full py-3">
       <a routerLink="/home">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -14,13 +15,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
         </svg>
       </a>
       <img
-        [alt]="name"
-        [src]="photoUrl"
+        [alt]="contact.name"
+        [src]="contact.photoUrl"
         width="42"
         height="42"
         class="rounded-full mx-auto">
       <div class="flex flex-col flex-grow text-sm mx-2">
-        <h2 class="leading-tight font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{name}}</h2>
+        <h2 class="leading-tight font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden">{{contact.name}}</h2>
         <p class="leading-tight text-gray-200 whitespace-nowrap overflow-ellipsis overflow-hidden">{{description}}</p>
       </div>
       <div class="flex-none flex-nowrap">
@@ -54,7 +55,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatHeaderComponent {
-  @Input() name = '';
-  @Input() photoUrl = '';
+  contact$ = this.contactsFacade.selectedContact$;
   @Input() description = 'zzz';
+
+  constructor(private contactsFacade: ContactsFacade) {}
 }

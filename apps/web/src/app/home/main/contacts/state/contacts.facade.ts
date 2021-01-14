@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AuthService } from 'apps/web/src/app/services/auth.service';
+import { select, Store } from '@ngrx/store';
+import { ContactDto } from '@nx-chat/dto';
+import { ChatService } from 'apps/web/src/app/services/chat.service';
+import { take } from 'rxjs/operators';
 import * as ContactsActions from './contacts.actions';
+import * as ContactsSelector from './contacts.selector';
 
 @Injectable()
 export class ContactsFacade {
-  /**
-   * Combine pieces of state using createSelector,
-   * and expose them as observables through the facade.
-   */
-  // loaded$ = this.store.pipe(select(ContactsSelectors.getContactsLoaded));
-  // allContacts$ = this.store.pipe(select(ContactsSelectors.getAllContacts));
-  // selectedContacts$ = this.store.pipe(select(ContactsSelectors.getSelected));
+  loaded$ = this.store.pipe(select(ContactsSelector.isLoaded));
+  contacts$ = this.store.pipe(select(ContactsSelector.selectContacts));
+  selectedContact$ = this.store.pipe(select(ContactsSelector.selectedContact));
 
-  constructor(private store: Store, private authService: AuthService) {}
+  constructor(
+    private store: Store,
+    private chatService: ChatService,
+  ) {}
 
   init() {
-    const userId = this.authService.CurrentUser().userId;
-    if (userId) {
-      this.store.dispatch(ContactsActions.load({ userId }));
-    }
+    this.store.dispatch(ContactsActions.load());
+    this.chatService.joinChannels();
+  }
+
+  selectContact(contact: ContactDto) {
+    this.store.dispatch(ContactsActions.contactSelect({ contact }));
+  }
+
+  unselectContact() {
+    this.store.dispatch(ContactsActions.contactUnselect());
+  }
+
+  async getSelectedContact() {
+    return await this.selectedContact$.pipe(take(1)).toPromise();
   }
 }
