@@ -43,13 +43,13 @@ import { ChatFacade } from '../../chat/state/chat.facade';
           <div
             *ngIf="submenuShow"
             (tap)="closeSubmenu()"
-            class="fixed top-0 bottom-0 left-0 right-0 bg-green-900 opacity-70 z-20"
+            class="fixed top-0 bottom-0 left-0 right-0 bg-gray-700 opacity-50 z-20"
           ></div>
           <div
             *ngIf="submenuShow"
-            class="absolute top-0 right-0 bg-gray-100 px-6 py-3 rounded-sm mt-2 mr-2 opacity-90 z-30"
+            class="absolute top-0 right-0 flex flex-col w-28 bg-gray-100 px-2 py-4 shadow-xl mt-2 mr-2 opacity90 z-30"
           >
-            <a (tap)="logout()" class="text-green-900">Logout</a>
+            <a (tap)="logout()" class="cursor-pointer text-green-900 px-3">Logout</a>
           </div>
         </div>
       </div>
