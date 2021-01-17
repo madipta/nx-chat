@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ChatFacade } from './chat/state/chat.facade';
-import { ContactsFacade } from './main/contacts/state/contacts.facade';
+import { ChatFacade } from './states/chat/chat.facade';
+import { ContactsFacade } from './states/contacts/contacts.facade';
 
 @Component({
   selector: 'app-chat-home',

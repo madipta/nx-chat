@@ -30,7 +30,7 @@ export class ContactsFacade {
     this.store.dispatch(ContactsActions.contactUnselect());
   }
 
-  async getSelectedContact() {
-    return await this.selectedContact$.pipe(take(1)).toPromise();
+  getSelectedContact() {
+    return this.selectedContact$.pipe(take(1)).toPromise();
   }
 }

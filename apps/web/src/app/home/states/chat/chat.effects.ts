@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { map, take } from 'rxjs/operators';
 import { fetch } from '@nrwl/angular';
+import { Store } from '@ngrx/store';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 
 import * as ChatActions from './chat.actions';
 import { ChatService } from '../../../services/chat.service';
-import { take } from 'rxjs/operators';
+import { ContactsFacade } from '../contacts/contacts.facade';
 
 @Injectable()
 export class ChatEffects {
@@ -14,7 +15,7 @@ export class ChatEffects {
       this.actions$.pipe(
         ofType(ChatActions.load),
         fetch({
-          run: (action) => {
+          run: () => {
             this.chatService
               .loadChat()
               .pipe(take(1))
@@ -53,9 +54,27 @@ export class ChatEffects {
     }
   );
 
+  incomingChat$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ChatActions.incomingChat),
+        map(async (action) => {
+            const { channel } = action.message;            
+            const con = await this.contactsFacade.getSelectedContact();
+            if (!con || channel !== con.channel) {
+              this.store.dispatch(ChatActions.incomingChatCount({ channel }));
+            }
+        })
+      ),
+    {
+      dispatch: false,
+    }
+  );
+
   constructor(
     private store: Store,
     private actions$: Actions,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private contactsFacade: ContactsFacade,
   ) {}
 }

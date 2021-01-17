@@ -13,9 +13,19 @@ export const loadChatFailure = createAction(
   props<{ error: any }>()
 );
 
-export const addChat = createAction(
-  '[Chat] Add',
+export const incomingChat = createAction(
+  '[Chat] Incoming Chat',
   props<{ message: ChatMessageDto }>()
+);
+
+export const incomingChatCount = createAction(
+  '[Chat] Incoming Chat Count',
+  props<{ channel: string }>()
+);
+
+export const resetChatCount = createAction(
+  '[Chat] Reset Chat Count',
+  props<{ channel: string }>()
 );
 
 export const sendChat = createAction(

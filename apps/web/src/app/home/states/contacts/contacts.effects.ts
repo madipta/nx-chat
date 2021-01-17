@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-import { take } from 'rxjs/operators';
-import * as ContactsActions from './contacts.actions';
-import { ContactService } from 'apps/web/src/app/services/contact.service';
+import { map, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
+import * as ContactsActions from './contacts.actions';
+import * as ChatActions from '../chat/chat.actions';
+import { ContactService } from 'apps/web/src/app/services/contact.service';
 
 @Injectable()
 export class ContactsEffects {
@@ -13,7 +14,7 @@ export class ContactsEffects {
       this.actions$.pipe(
         ofType(ContactsActions.load),
         fetch({
-          run: (action, state) => {
+          run: () => {
             this.contactService
               .GetUserContactList()
               .pipe(take(1))
@@ -30,9 +31,20 @@ export class ContactsEffects {
     { dispatch: false }
   );
 
+  contactSelect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ContactsActions.contactSelect),
+        map((action) => {
+          const { channel } = action.contact;
+          return ChatActions.resetChatCount({ channel });
+        })
+      ),
+  );
+
   constructor(
     private store: Store,
     private actions$: Actions,
-    private contactService: ContactService,
+    private contactService: ContactService
   ) {}
 }

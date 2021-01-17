@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContactsFacade } from '../main/contacts/state/contacts.facade';
+import { ContactsFacade } from '../states/contacts/contacts.facade';
 
 @Component({
   selector: 'app-chat',

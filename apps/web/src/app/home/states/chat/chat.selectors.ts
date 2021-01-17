@@ -17,6 +17,11 @@ export const selectMessages = createSelector(
   (state: ChatState) => state.messages
 );
 
+export const newMessagesCount = createSelector(
+  contactsRoot,
+  (state: ChatState) => state.newMessagesCount
+);
+
 export const selectedChannel = createSelector(
   contactsRoot,
   (state: ChatState) => state.selectedChannel

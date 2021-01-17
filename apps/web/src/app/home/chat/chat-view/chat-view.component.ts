@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../services/auth.service';
-import { ContactsFacade } from '../../main/contacts/state/contacts.facade';
-import { ChatFacade } from '../state/chat.facade';
+import { ChatFacade } from '../../states/chat/chat.facade';
+import { ContactsFacade } from '../../states/contacts/contacts.facade';
 
 @Component({
   selector: 'app-chat-view',

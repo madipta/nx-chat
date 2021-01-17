@@ -8,12 +8,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { homeRoutes } from './home.routes';
 import { HomeComponent } from './home.component';
-import { ContactsFacade } from './main/contacts/state/contacts.facade';
-import { ChatFacade } from './chat/state/chat.facade';
-import * as fromChat from './chat/state/chat.reducer';
-import * as fromContacts from './main/contacts/state/contacts.reducer';
-import { ChatEffects } from './chat/state/chat.effects';
-import { ContactsEffects } from './main/contacts/state/contacts.effects';
+import { ChatEffects } from './states/chat/chat.effects';
+import { ChatFacade } from './states/chat/chat.facade';
+import { ContactsEffects } from './states/contacts/contacts.effects';
+import { ContactsFacade } from './states/contacts/contacts.facade';
+import * as fromChat from './states/chat/chat.reducer';
+import * as fromContacts from './states/contacts/contacts.reducer';
 
 @NgModule({
   declarations: [HomeComponent],

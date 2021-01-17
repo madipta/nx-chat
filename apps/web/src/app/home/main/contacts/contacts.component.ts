@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContactDto } from '@nx-chat/dto';
-import { ContactsFacade } from './state/contacts.facade';
+import { ContactsFacade } from '../../states/contacts/contacts.facade';
 
 @Component({
   selector: 'app-chat-list',

@@ -7,13 +7,13 @@ import {
 import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { AuthService } from '../../../services/auth.service';
-import { ChatFacade } from '../../chat/state/chat.facade';
+import { ChatFacade } from '../../states/chat/chat.facade';
 
 @Component({
   selector: 'app-main-header',
   template: `
-    <div class="flex flex-row items-end py-1 mb-4">
-      <h1 class="text-xl font-medium mr-auto">WalahApp</h1>
+    <div class="flex flex-row items-end pt-1 pb-4">
+      <h1 class="tracking-wide text-xl font-medium mr-auto">WalahApp</h1>
       <div class="text-sm font-medium text-gray-300">
         <div class="inline-block pr-2 border-r border-green-700 mr-2">
           <svg
@@ -54,7 +54,7 @@ import { ChatFacade } from '../../chat/state/chat.facade';
         </div>
       </div>
     </div>
-    <div class="flex flex-row text-sm font-medium text-green-600">
+    <div class="flex flex-row text-sm font-medium text-green-600 border-b border-green-800 ">
       <svg
         (tap)="menuClick('photo')"
         xmlns="http://www.w3.org/2000/svg"
@@ -70,16 +70,22 @@ import { ChatFacade } from '../../chat/state/chat.facade';
         <div
           (tap)="menuClick('')"
           [ngClass]="{
-            'text-gray-100 border-b-2 border-gray-100': selected == ''
+            'text-gray-100 pb-1 border-b-2 border-gray-100': selected == ''
           }"
           class="cursor-pointer font-semibold mx-2 flex-grow"
         >
-          Chats
+          Chats 
+          <span
+            *ngIf="unreadMessages$ | async as unreadMessages"
+            class="bg-gray-100 text-green-800"
+            ng-chat-count-pill>
+            {{ unreadMessages ? unreadMessages : '' }}
+          </span>
         </div>
         <div
           (tap)="menuClick('status')"
           [ngClass]="{
-            'text-gray-100 border-b-2 border-gray-100': selected == 'status'
+            'text-gray-100 pb-1 border-b-2 border-gray-100': selected == 'status'
           }"
           class="cursor-pointer font-semibold mx-2 flex-grow"
         >
@@ -88,7 +94,7 @@ import { ChatFacade } from '../../chat/state/chat.facade';
         <div
           (tap)="menuClick('calls')"
           [ngClass]="{
-            'text-gray-100 border-b-2 border-gray-100': selected == 'calls'
+            'text-gray-100 pb-1 border-b-2 border-gray-100': selected == 'calls'
           }"
           class="cursor-pointer font-semibold ml-2 flex-grow"
         >
@@ -103,6 +109,7 @@ export class HeaderComponent {
   @Output() MainMenuSelected = new EventEmitter<string>();
   selected = '';
   submenuShow = false;
+  unreadMessages$ = this.chatFacade.getNewContactMessageCount();
 
   constructor(
     private socket: Socket,

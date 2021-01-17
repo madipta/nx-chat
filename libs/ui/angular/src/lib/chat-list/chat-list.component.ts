@@ -15,13 +15,21 @@ import { ContactDto } from '@nx-chat/dto';
       (tap)="select(contact)"
       [contact]="contact"
       *ngFor="let contact of list; trackBy: trackByFn">
+      <div additional>
+        <span 
+          *ngIf="contact.newMessageCount"
+          ng-chat-count-pill
+          class="bg-green-500 text-white font-medium">
+          {{contact.newMessageCount}}
+        </span>
+      </div>
     </ng-chat-activity-list-item>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatListComponent {
   @HostBinding('className') rootClass =
-    'cursor-pointer flex flex-col pb-8 overflow-y-auto';
+    'cursor-pointer max-w-xl flex flex-col pb-8 overflow-y-auto mx-auto';
   @Output() ChatSelected = new EventEmitter<string>();
   @Input() list: ContactDto[] = [];
 

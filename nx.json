@@ -38,6 +38,9 @@
     },
     "dto": {
       "tags": []
+    },
+    "settings": {
+      "tags": []
     }
   }
 }

@@ -7,6 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { ContactDto, UserDto } from '@nx-chat/dto';
+import { WS_API } from '@nx-chat/settings';
 import { UserService } from '../../services/user.service';
 
 
@@ -17,30 +18,28 @@ export class ContactGateway {
 
   constructor(private userService: UserService) {}
 
-  @SubscribeMessage('channels')
+  @SubscribeMessage(WS_API.JOIN_CHANNELS)
   async channels(
     @ConnectedSocket() client: Socket,
     @MessageBody() dto: { userId: string }
   ): Promise<string[]> {
     const contacts = this.userService.GetContacts(dto.userId);
     const channels = contacts.map((contact) => contact.channel);
-    const rooms = client.adapter.rooms;
+    client.leaveAll();
     for (const channel in channels) {
-      if (!rooms[channel]) {
-        client.join(channels[channel]);
-      }
+      client.join(channels[channel]);
     }
     return channels;
   }
 
-  @SubscribeMessage('contacts')
+  @SubscribeMessage(WS_API.GET_CONTACTS)
   async contacts(
     @MessageBody() dto: { userId: string }
   ): Promise<ContactDto[]> {
     return this.userService.GetContacts(dto.userId);
   }
 
-  @SubscribeMessage('contact')
+  @SubscribeMessage(WS_API.GET_USER)
   async contact(@MessageBody() dto: { userId: string }): Promise<UserDto> {
     const user = this.userService.GetUser(dto.userId);
     if (user.length) {

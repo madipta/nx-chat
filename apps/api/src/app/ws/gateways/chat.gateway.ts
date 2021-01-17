@@ -9,6 +9,7 @@ import {
 import { Server, Socket } from 'socket.io';
 import { customAlphabet } from 'nanoid';
 import { ChatMessageDto } from '@nx-chat/dto';
+import { WS_API } from '@nx-chat/settings';
 import { ChatService } from '../../services/chat.service';
 
 const nanoid = customAlphabet('1234567890abcdef', 10);
@@ -20,12 +21,12 @@ export class ChatGateway {
 
   constructor(private chatService: ChatService) {}
 
-  @SubscribeMessage('pm')
+  @SubscribeMessage(WS_API.CLIENT_SEND_CHAT)
   async pm(
     @ConnectedSocket() client: Socket,
     @MessageBody() dto: ChatMessageDto
   ): Promise<WsResponse<ChatMessageDto>> {
-    const event = 'mp';
+    const event = WS_API.SERVER_SEND_CHAT;
     dto.id = nanoid();
     dto.at = new Date().toISOString();
     client.to(dto.channel).emit(event, dto);
@@ -33,7 +34,7 @@ export class ChatGateway {
     return { event, data: dto };
   }
 
-  @SubscribeMessage('chat-load')
+  @SubscribeMessage(WS_API.LOAD_CHAT)
   async chatLoad(
     @MessageBody() dto: { userId: string }
   ): Promise<ChatMessageDto[]> {

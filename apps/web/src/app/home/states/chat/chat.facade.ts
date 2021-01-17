@@ -13,11 +13,18 @@ export class ChatFacade {
   loaded$ = this.store.pipe(select(ChatSelectors.isLoaded));
   messages$ = this.store.pipe(select(ChatSelectors.selectMessages));
   selectedChannel$ = this.store.pipe(select(ChatSelectors.selectedChannel));
+  newMessagesCount$ = this.store.pipe(select(ChatSelectors.newMessagesCount));
 
   constructor(private store: Store, private chatService: ChatService) {}
 
   sendChat(message: ChatMessageDto) {
     this.store.dispatch(ChatActions.sendChat({ message }));
+  }
+
+  getNewContactMessageCount() {
+    return this.newMessagesCount$.pipe(
+      map((m) => m.filter((msg) => msg.count > 0).length)
+    );
   }
 
   getSelectedMessages(channel: string) {
@@ -32,7 +39,7 @@ export class ChatFacade {
       .onChatReceived()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((message) => {
-        this.store.dispatch(ChatActions.addChat({ message }));
+        this.store.dispatch(ChatActions.incomingChat({ message }));
       });
   }
 

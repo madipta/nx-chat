@@ -6,4 +6,5 @@ export class ChatMessageDto {
   message: string;
   channel: string;
   at?: string;
+  read? = false;
 }

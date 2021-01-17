@@ -7,6 +7,7 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 import { LoginDto, UserDto } from '@nx-chat/dto';
+import { WS_API } from '@nx-chat/settings';
 import { UserService } from '../../services/user.service';
 
 
@@ -21,7 +22,7 @@ export class EventsGateway implements OnModuleInit {
     console.log('module init');
   }
 
-  @SubscribeMessage('login')
+  @SubscribeMessage(WS_API.LOGIN)
   async login(
     @MessageBody() dto: LoginDto
   ): Promise<UserDto> {
