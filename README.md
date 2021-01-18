@@ -1,5 +1,5 @@
 # NxChat
-Simple private chat application using websocket (Socket.Io)  
+Simple private chat application using NodeJs + websocket (Socket.Io)  
 
 Monorepo: Nx  
 Backend: Nestjs  
@@ -40,7 +40,7 @@ open  http://localhost:4200 in two or more different browser with different user
   1 | Chrome  | vima
   2 | Firefox | carl
 
-available username is hardcoded in data/user-list.ts  
+available user is hardcoded in data/user-list.ts  
 vima, carl, sal, giu, tony, vingi, alevo, luci  
 no password is required  
 
