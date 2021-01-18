@@ -1,5 +1,5 @@
 # NxChat
-Simple chat application using websocket (Socket.Io)  
+Simple private chat application using websocket (Socket.Io)  
 
 Monorepo: Nx  
 Backend: Nestjs  

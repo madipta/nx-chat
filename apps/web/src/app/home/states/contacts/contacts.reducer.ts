@@ -1,5 +1,6 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { ContactDto } from '@nx-chat/dto';
+import { ContactsUpdater } from './contacts-updater';
 import * as ContactsActions from './contacts.actions';
 
 export const CONTACTS_FEATURE_KEY = 'contacts';
@@ -41,6 +42,18 @@ const contactsReducer = createReducer(
   on(ContactsActions.contactUnselect, (state) => ({
     ...state,
     selectedContact: null,
+  })),
+  on(ContactsActions.contactResetUnread, (state, { contact }) => ({
+    ...state,
+    contacts: ContactsUpdater.resetMessageCount(state.contacts, contact),
+  })),
+  on(ContactsActions.newMessage, (state, { message }) => ({
+    ...state,
+    contacts: ContactsUpdater.newMessage(state.contacts, message),
+  })),
+  on(ContactsActions.newUnreadMessage, (state, { message }) => ({
+    ...state,
+    contacts: ContactsUpdater.newUnreadMessage(state.contacts, message),
   }))
 );
 

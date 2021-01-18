@@ -29,23 +29,23 @@ import { ContactsFacade } from '../../states/contacts/contacts.facade';
           ng-chat-not-implemented
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
-          class="cursor-pointer inline w-5 h-5 mr-6"
-          viewBox="0 0 25 25">
+          class="cursor-pointer inline w-4 h-4 mr-4"
+          viewBox="0 0 24 24">
           <path d="M20 19.75A1.25 1.25 0 0 1 18.75 21H1.25A1.25 1.25 0 0 1 0 19.75V5.25A1.25 1.25 0 0 1 1.25 4h17.5A1.25 1.25 0 0 1 20 5.25zm4.76-12.68a.5.5 0 0 0-.49 0L21 8.74v7.51l3.27 1.69a.5.5 0 0 0 .73-.44v-10a.5.5 0 0 0-.24-.43z" />
         </svg>
         <svg 
           ng-chat-not-implemented
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
-          class="cursor-pointer inline w-4 h-4 mr-4"
-          viewBox="0 0 18 18">
+          class="cursor-pointer inline w-4 h-4 mr-2"
+          viewBox="0 0 20 20">
           <path d="M16.23 12.26l-2.54-.29a1.99 1.99 0 0 0-1.64.57l-1.84 1.84c-2.83-1.44-5.15-3.75-6.59-6.59l1.85-1.85a1.99 1.99 0 0 0 .57-1.64l-.29-2.52A2 2 0 0 0 3.76.01H2.03C.9.01-.04.95.03 2.08c.53 8.54 7.36 15.36 15.89 15.89 1.13.07 2.07-.87 2.07-2v-1.73c.01-1.01-.75-1.86-1.76-1.98z" />
         </svg>
         <svg 
           ng-chat-not-implemented
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
-          class="cursor-pointer inline w-5 h-5"
+          class="cursor-pointer inline w-4 h-4"
           viewBox="0 0 32 32">
           <path d="M16 10c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zm0 3c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3zm0 9c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"/>
         </svg>
@@ -60,7 +60,7 @@ export class ChatHeaderComponent {
 
   constructor(private router: Router, private contactsFacade: ContactsFacade) {}
 
-  back() {
+  async back() {
     this.contactsFacade.unselectContact();
     this.router.navigate(['home/main']);
   }

@@ -42,6 +42,16 @@ export class ContactsEffects {
       ),
   );
 
+  contactUnselect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ContactsActions.contactUnselect),
+        map((action) => {
+          return ContactsActions.contactResetUnread(action);
+        })
+      ),
+  );
+
   constructor(
     private store: Store,
     private actions$: Actions,

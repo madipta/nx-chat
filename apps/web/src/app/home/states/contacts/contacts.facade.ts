@@ -12,10 +12,7 @@ export class ContactsFacade {
   contacts$ = this.store.pipe(select(ContactsSelector.selectContacts));
   selectedContact$ = this.store.pipe(select(ContactsSelector.selectedContact));
 
-  constructor(
-    private store: Store,
-    private chatService: ChatService,
-  ) {}
+  constructor(private store: Store, private chatService: ChatService) {}
 
   init() {
     this.store.dispatch(ContactsActions.load());
@@ -26,8 +23,9 @@ export class ContactsFacade {
     this.store.dispatch(ContactsActions.contactSelect({ contact }));
   }
 
-  unselectContact() {
-    this.store.dispatch(ContactsActions.contactUnselect());
+  async unselectContact() {
+    const contact = await this.getSelectedContact();
+    this.store.dispatch(ContactsActions.contactUnselect({ contact }));
   }
 
   getSelectedContact() {

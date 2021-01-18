@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
 import * as ChatActions from './chat.actions';
+import * as ContactsActions from '../contacts/contacts.actions';
 import { ChatService } from '../../../services/chat.service';
 import { ContactsFacade } from '../contacts/contacts.facade';
 
@@ -59,11 +60,15 @@ export class ChatEffects {
       this.actions$.pipe(
         ofType(ChatActions.incomingChat),
         map(async (action) => {
-            const { channel } = action.message;            
-            const con = await this.contactsFacade.getSelectedContact();
-            if (!con || channel !== con.channel) {
-              this.store.dispatch(ChatActions.incomingChatCount({ channel }));
-            }
+          const { channel } = action.message;
+          const con = await this.contactsFacade.getSelectedContact();
+          if (!con || channel !== con.channel) {
+            this.store.dispatch(ChatActions.incomingChatCount({ channel }));
+            this.store.dispatch(ContactsActions.newUnreadMessage(action));
+          }
+          else {
+            this.store.dispatch(ContactsActions.newMessage(action));
+          }
         })
       ),
     {
@@ -75,6 +80,6 @@ export class ChatEffects {
     private store: Store,
     private actions$: Actions,
     private chatService: ChatService,
-    private contactsFacade: ContactsFacade,
+    private contactsFacade: ContactsFacade
   ) {}
 }
