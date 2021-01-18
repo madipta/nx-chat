@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
   {
     path: 'home',
     loadChildren: async() => (await import('./home/home.module')).HomeModule,
-    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
