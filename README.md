@@ -44,8 +44,7 @@ available username is hardcoded in data/user-list.ts
 vima, carl, sal, giu, tony, vingi, alevo, luci  
 no password is required  
 
-USE DIFFERENT BROWSER!  
-this sample application using local storage  to store user auth  
+USE DIFFERENT BROWSER!
 
 *chat message is not persistance so it will disapear after refresh or go to another link*
 
