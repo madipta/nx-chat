@@ -22,9 +22,6 @@ run npm install or yarn
 
 ## How to Run
 
-install nx cli globaly if you haven't installed
-`npm install -g nx`
-
 run angular web server
 `nx serve`
 
@@ -45,6 +42,3 @@ vima, carl, sal, giu, tony, vingi, alevo, luci
 no password is required  
 
 USE DIFFERENT BROWSER!
-
-*chat message is not persistance so it will disapear after refresh or go to another link*
-
