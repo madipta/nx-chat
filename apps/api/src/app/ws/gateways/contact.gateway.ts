@@ -16,7 +16,7 @@ export class ContactGateway {
   @WebSocketServer()
   server: Server;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @SubscribeMessage(WS_API.JOIN_CHANNELS)
   async channels(
@@ -25,7 +25,6 @@ export class ContactGateway {
   ): Promise<string[]> {
     const contacts = this.userService.GetContacts(dto.userId);
     const channels = contacts.map((contact) => contact.channel);
-    client.leaveAll();
     for (const channel in channels) {
       client.join(channels[channel]);
     }

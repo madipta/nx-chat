@@ -8,7 +8,9 @@ import { LoginComponent } from './login/login.component';
 
 const socketIoConfig: SocketIoConfig = {
   url: 'http://localhost:3333',
-  options: {},
+  options: {
+    transports: ['websocket']
+  },
 };
 
 @NgModule({
@@ -24,4 +26,4 @@ const socketIoConfig: SocketIoConfig = {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
