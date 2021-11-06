@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-chat/ui/angular": ["libs/ui/angular/src/index.ts"],
       "@nx-chat/dto": ["libs/dto/src/index.ts"],
-      "@nx-chat/settings": ["libs/settings/src/index.ts"]
+      "@nx-chat/settings": ["libs/settings/src/index.ts"],
+      "@nx-chat/ui/angular": ["libs/ui/angular/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -22,25 +22,28 @@
       }
     }
   },
-  "projects": {
-    "web": {
-      "tags": []
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "web-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web"]
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     },
-    "api": {
-      "tags": []
-    },
-    "ui-angular": {
-      "tags": []
-    },
-    "dto": {
-      "tags": []
-    },
-    "settings": {
-      "tags": []
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
-  }
+  },
+  "defaultProject": "web"
 }

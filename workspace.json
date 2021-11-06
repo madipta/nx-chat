@@ -1,6 +1,132 @@
 {
   "version": 2,
   "projects": {
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/api/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "dto": {
+      "root": "libs/dto",
+      "sourceRoot": "libs/dto/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dto/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dto"],
+          "options": {
+            "jestConfig": "libs/dto/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "settings": {
+      "root": "libs/settings",
+      "sourceRoot": "libs/settings/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/settings/**/*.ts"]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/settings"],
+          "options": {
+            "jestConfig": "libs/settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "ui-angular": {
+      "projectType": "library",
+      "root": "libs/ui/angular",
+      "sourceRoot": "libs/ui/angular/src",
+      "prefix": "ng-chat",
+      "targets": {
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/angular/tsconfig.lib.json",
+              "libs/ui/angular/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/angular/**/*"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui/angular"],
+          "options": {
+            "jestConfig": "libs/ui/angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "web": {
       "projectType": "application",
       "root": "apps/web",
@@ -8,27 +134,17 @@
       "prefix": "app-chat",
       "targets": {
         "build": {
-          "executor": "@angular-builders/custom-webpack:browser",
+          "executor": "@nrwl/angular:webpack-browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "socket.io-client"
-            ],
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
+            "allowedCommonJsDependencies": ["socket.io-client"],
             "outputPath": "dist/apps/web",
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
             "polyfills": "apps/web/src/polyfills.ts",
             "tsConfig": "apps/web/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/web/src/favicon.ico",
-              "apps/web/src/assets"
-            ],
-            "styles": [
-              "apps/web/src/styles.scss"
-            ],
+            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
+            "styles": ["apps/web/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -62,11 +178,8 @@
           }
         },
         "serve": {
-          "executor": "@angular-builders/custom-webpack:dev-server",
+          "executor": "@nrwl/angular:webpack-server",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "browserTarget": "web:build"
           },
           "configurations": {
@@ -89,23 +202,19 @@
               "apps/web/tsconfig.spec.json",
               "apps/web/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/web/**/*"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/web"
-          ],
+          "outputs": ["coverage/apps/web"],
           "options": {
             "jestConfig": "apps/web/jest.config.js",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "web-e2e": {
       "root": "apps/web-e2e",
@@ -128,172 +237,13 @@
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/web-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web-e2e/**/*"
-            ]
+            "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
           }
         }
-      }
-    },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
-      "projectType": "application",
-      "prefix": "api",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/api/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/api"
-          ],
-          "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ui-angular": {
-      "projectType": "library",
-      "root": "libs/ui/angular",
-      "sourceRoot": "libs/ui/angular/src",
-      "prefix": "ng-chat",
-      "targets": {
-        "lint": {
-          "executor": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/ui/angular/tsconfig.lib.json",
-              "libs/ui/angular/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/angular/**/*"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ui/angular"
-          ],
-          "options": {
-            "jestConfig": "libs/ui/angular/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "dto": {
-      "root": "libs/dto",
-      "sourceRoot": "libs/dto/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/dto/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/dto"
-          ],
-          "options": {
-            "jestConfig": "libs/dto/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "settings": {
-      "root": "libs/settings",
-      "sourceRoot": "libs/settings/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/settings/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/settings"
-          ],
-          "options": {
-            "jestConfig": "libs/settings/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["web"]
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "generators": {
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
-  "defaultProject": "web"
+  }
 }
