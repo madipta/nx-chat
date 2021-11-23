@@ -9,12 +9,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -39,13 +43,19 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "coverage/apps/api"
+          ],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
@@ -62,13 +72,19 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/dto/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/dto/**/*.ts"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dto"],
+          "outputs": [
+            "coverage/libs/dto"
+          ],
           "options": {
             "jestConfig": "libs/dto/jest.config.js",
             "passWithNoTests": true
@@ -85,13 +101,19 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/settings/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/settings/**/*.ts"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/settings"],
+          "outputs": [
+            "coverage/libs/settings"
+          ],
           "options": {
             "jestConfig": "libs/settings/jest.config.js",
             "passWithNoTests": true
@@ -113,12 +135,17 @@
               "libs/ui/angular/tsconfig.lib.json",
               "libs/ui/angular/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/angular/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/angular/**/*"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui/angular"],
+          "outputs": [
+            "coverage/libs/ui/angular"
+          ],
           "options": {
             "jestConfig": "libs/ui/angular/jest.config.js",
             "passWithNoTests": true
@@ -136,15 +163,22 @@
         "build": {
           "executor": "@nrwl/angular:webpack-browser",
           "options": {
-            "allowedCommonJsDependencies": ["socket.io-client"],
+            "allowedCommonJsDependencies": [
+              "socket.io-client"
+            ],
             "outputPath": "dist/apps/web",
             "index": "apps/web/src/index.html",
             "main": "apps/web/src/main.ts",
             "polyfills": "apps/web/src/polyfills.ts",
             "tsConfig": "apps/web/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
-            "styles": ["apps/web/src/styles.scss"],
+            "assets": [
+              "apps/web/src/favicon.ico",
+              "apps/web/src/assets"
+            ],
+            "styles": [
+              "apps/web/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -202,12 +236,17 @@
               "apps/web/tsconfig.spec.json",
               "apps/web/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/web/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/web/**/*"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/web"],
+          "outputs": [
+            "coverage/apps/web"
+          ],
           "options": {
             "jestConfig": "apps/web/jest.config.js",
             "passWithNoTests": true
@@ -237,13 +276,20 @@
         "lint": {
           "executor": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
+            "tsConfig": [
+              "apps/web-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/web-e2e/**/*"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["web"]
+      "implicitDependencies": [
+        "web"
+      ]
     }
   }
 }
